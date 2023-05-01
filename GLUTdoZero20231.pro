@@ -20,9 +20,11 @@ SOURCES += main.cpp \
     gui_glut/extra.cpp \
     gui_glut/gui.cpp \
     pessoal/caixasom.cpp \
+    pessoal/cama.cpp \
     pessoal/carro.cpp \
     pessoal/circle.cpp \
     pessoal/cubo.cpp \
+    pessoal/guardaroupa.cpp \
     pessoal/objeto.cpp \
     pessoal/shape.cpp \
     pessoal/sofa.cpp \
@@ -38,9 +40,11 @@ HEADERS += \
     gui_glut/extra.h \
     gui_glut/gui.h \
     pessoal/caixasom.h \
+    pessoal/cama.h \
     pessoal/carro.h \
     pessoal/circle.h \
     pessoal/cubo.h \
+    pessoal/guardaroupa.h \
     pessoal/objeto.h \
     pessoal/shape.h \
     pessoal/sofa.h \

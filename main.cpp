@@ -5,10 +5,14 @@ using namespace std;
 
 #include <gui.h>
 #include <objeto.h>
+
+#include <carro.h>
 #include <cubo.h>
 #include <sofa.h>
 #include <televisao.h>
 #include <caixasom.h>
+#include <cama.h>
+#include <guardaroupa.h>
 
 Vetor3D t = Vetor3D(0, 0, 0);
 Vetor3D r = Vetor3D(0, 0, 0);
@@ -16,36 +20,33 @@ Vetor3D e = Vetor3D(1, 1, 1);
 
 vector<Objeto*> objetos;
 
-//Cubo* s = new Cubo();
-Sofa* o = new Sofa();
-CaixaSom* x = new CaixaSom();
-
-Model3DS carro = Model3DS("../3ds/cartest.3DS");
+bool desenha_objetos = false;
+int s = (int)objetos.size() - 1;
 
 void desenha() {
     GUI::displayInit();
     GUI::setLight(0, 1,2,3, true, false);
     GUI::setColor(1,0.6,0);
     GUI::drawFloor();
-    GUI::drawOrigin(0.5);
+//    GUI::drawOrigin(0.5);
+    GUI::drawOriginAL(2.5);
 
-//    s->set_selecionado();
-    x->set_selecionado();
+//    if (s > -1) {
+////        objetos[s - 1]->selecionado = true;
+////        objetos[s]->selecionado = false;
+//        objetos[s]->selecionado = true;
+//    }
 
-//    objetos.push_back(s);
-    objetos.push_back(o);
-    objetos.push_back(x);
 
-    for (int i = 0; i < (int)objetos.size(); i++) {
-        if (objetos[i]->selecionado) {
-            objetos[i]->translacao = t;
-            objetos[i]->rotacao = r;
-            objetos[i]->escala = e;
+    if (desenha_objetos) {
+        for (int i = 0; i < (int)objetos.size(); i++) {
+            if (objetos[i]->selecionado) {
+                objetos[i]->translacao = t;
+                objetos[i]->rotacao = r;
+                objetos[i]->escala = e;
+            }
+            objetos[i]->desenha();
         }
-        objetos[i]->desenha();
-//        glPushMatrix();
-//            objetos[i]->desenha();
-//        glPopMatrix();
     }
 
     t.x += glutGUI::dtx;
@@ -76,8 +77,38 @@ void teclado(unsigned char tecla, int mx, int my) {
         r = Vetor3D(0, 0, 0);
         e = Vetor3D(1, 1, 1);
         break;
-    case 'L': // desenhar ou não coordenada local
-        o->set_desenha_local();
+    case 'd':
+        desenha_objetos = !desenha_objetos;
+        break;
+    case 'D':   // remove todos os elementos do vetor
+        objetos.clear();
+        break;
+    case 'b':
+        if (desenha_objetos) { objetos.push_back(new Cama()); }
+        break;
+    case 'c':
+        if (desenha_objetos) { objetos.push_back(new Carro()); }
+        break;
+    case 'C':
+        if (desenha_objetos) { objetos.push_back(new CaixaSom()); }
+        break;
+    case 'g':
+        if (desenha_objetos) { objetos.push_back(new GuardaRoupa()); }
+        break;
+    case 's':
+        if (desenha_objetos) { objetos.push_back(new Sofa()); }
+        break;
+    case 'T':
+        if (desenha_objetos) { objetos.push_back(new Televisao()); }
+        break;
+
+    case '-':   // zerar t, r, e && colocar uma função para essa operação
+        (s == 0) ? s = 0 : s -= 1;
+        break;
+    case '+':   // zerar t, r, e && colocar uma função para essa operação
+        (s > (int)objetos.size()) ? s = (int)objetos.size() - 1 : s += 1;
+        break;
+
     default:
         break;
     }

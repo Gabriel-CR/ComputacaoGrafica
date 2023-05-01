@@ -10,9 +10,9 @@ void CaixaSom::desenha() {
         Objeto::desenha();
 
         glPushMatrix();
+            (this->selecionado) ? GUI::setColor(0, 1, 0) : GUI::setColor(1*1.6, 1*1.6, 1*1.6);
             glScalef(1, 1.5, 1);
-            GUI::setColor(1*1.6, 1*1.6, 1*1.6);
             c.desenha();
-            glPopMatrix();
+        glPopMatrix();
     glPopMatrix();
 }

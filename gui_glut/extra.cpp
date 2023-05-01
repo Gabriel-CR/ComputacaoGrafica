@@ -320,15 +320,16 @@ void glutGUI::defaultKey(unsigned char key, int x, int y)
         enabled_light[key-'0'] = !enabled_light[key-'0'];
         break;
 
-    case 'c':
-        posCam --;
-        posCam += 16;
-        changeCam();
-        break;
-    case 'C':
-        posCam ++;
-        changeCam();
-        break;
+//    case 'c':
+//        posCam --;
+//        posCam += 16;
+//        changeCam();          comentado por mim
+//        break;
+//    case 'C':
+//        posCam ++;
+//        changeCam();
+//        break;
+
     case 'j':
         posCam = 1;
         delete cam;

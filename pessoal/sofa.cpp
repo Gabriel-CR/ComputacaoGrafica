@@ -9,7 +9,7 @@ void Sofa::desenha() {
     glPushMatrix();
         Objeto::desenha();
 
-        GUI::setColor(1, 0.64, 0);
+        (this->selecionado) ? GUI::setColor(0, 1, 0) : GUI::setColor(1, 0.64, 0);
         glPushMatrix();
             glScaled(2, 0.5, 1);
             c.desenha();

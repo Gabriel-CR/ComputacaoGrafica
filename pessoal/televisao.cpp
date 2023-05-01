@@ -19,7 +19,7 @@ void Televisao::desenha() {
             glScalef(4, 1, 1);
             glScalef(1, 2, 1);
             glScalef(1, 1, 0.5);
-            GUI::setColor(0.451, 0.475, 0.627);
+            (this->selecionado) ? GUI::setColor(0, 1, 0) : GUI::setColor(0.451, 0.475, 0.627);
             c.desenha();
         glPopMatrix();
         glPushMatrix(); // TELA
@@ -27,7 +27,7 @@ void Televisao::desenha() {
             glScalef(3.5, 1, 1);
             glScalef(1, 1.5, 1);
             glScalef(1, 1, 0.125);
-            GUI::setColor(0.169, 0.169, 0.169);
+            (this->selecionado) ? GUI::setColor(0, 1, 0) : GUI::setColor(0.169, 0.169, 0.169);
             c.desenha();
         glPopMatrix();
     glPopMatrix();
@@ -35,7 +35,7 @@ void Televisao::desenha() {
         glScalef(3, 1, 1);
         glScalef(1, 0.25, 1);
         glScalef(1, 1, 0.5);
-        GUI::setColor(0.451, 0.475, 0.627);
+        (this->selecionado) ? GUI::setColor(0, 1, 0) : GUI::setColor(0.451, 0.475, 0.627);
         c.desenha();
     glPopMatrix();
     glPushMatrix(); // SUPORTE DA BASE
