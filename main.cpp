@@ -23,20 +23,49 @@ vector<Objeto*> objetos;
 bool desenha_objetos = false;
 int s = (int)objetos.size() - 1;
 
+void zerar_vetores() {
+    t = objetos[s]->translacao;
+    r = objetos[s]->rotacao;
+    e = objetos[s]->escala;
+}
+
+void selecionar_proximo() {
+    if (s == (int)objetos.size() - 1) {
+        objetos[s]->selecionado = false;
+    }
+
+    s = (s + 1) % (int)objetos.size();
+
+    zerar_vetores();
+
+    if (s == 0) {
+        objetos[s]->selecionado = true;
+    } else {
+        objetos[s]->selecionado = true;
+        objetos[s - 1]->selecionado = false;
+    }
+}
+
+void selecionar_anterior() { // TODO
+    zerar_vetores();
+
+    if (s > -1) {
+        (s - 1) < 0 ? s = 0 : s = s - 1;
+        objetos[s]->selecionado = true;
+        if (s < -1) {
+            objetos[s + 1]->selecionado = false;
+            cout << "teste" << endl;
+        }
+        cout << s << endl;
+    }
+}
+
 void desenha() {
     GUI::displayInit();
     GUI::setLight(0, 1,2,3, true, false);
     GUI::setColor(1,0.6,0);
     GUI::drawFloor();
-//    GUI::drawOrigin(0.5);
     GUI::drawOriginAL(2.5);
-
-//    if (s > -1) {
-////        objetos[s - 1]->selecionado = true;
-////        objetos[s]->selecionado = false;
-//        objetos[s]->selecionado = true;
-//    }
-
 
     if (desenha_objetos) {
         for (int i = 0; i < (int)objetos.size(); i++) {
@@ -103,10 +132,10 @@ void teclado(unsigned char tecla, int mx, int my) {
         break;
 
     case '-':   // zerar t, r, e && colocar uma função para essa operação
-        (s == 0) ? s = 0 : s -= 1;
+        selecionar_anterior();
         break;
     case '+':   // zerar t, r, e && colocar uma função para essa operação
-        (s > (int)objetos.size()) ? s = (int)objetos.size() - 1 : s += 1;
+        selecionar_proximo();
         break;
 
     default:
@@ -118,4 +147,5 @@ int main() {
     cout << "Hello World!" << endl;
 
     GUI gui = GUI(800,600,desenha,teclado);
+    cout << s << endl;
 }
