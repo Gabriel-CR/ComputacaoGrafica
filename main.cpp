@@ -15,6 +15,7 @@ using namespace std;
 #include <cadeira.h>
 #include <mesa.h>
 #include <fogao.h>
+#include <geladeira.h>
 
 Vetor3D t = Vetor3D(0, 0, 0);
 Vetor3D r = Vetor3D(0, 0, 0);
@@ -55,7 +56,7 @@ void selecionar_anterior() {
     zerar_vetores();
 }
 
-//Fogao c = Fogao();
+//Geladeira c = Geladeira();
 
 void desenha() {
     GUI::displayInit();
@@ -126,6 +127,9 @@ void teclado(unsigned char tecla, int mx, int my) {
         break;
     case 'g':
         if (desenha_objetos) { objetos.push_back(new GuardaRoupa()); }
+        break;
+    case 'G':
+        if (desenha_objetos) { objetos.push_back(new Geladeira()); }
         break;
     case 's':
         if (desenha_objetos) { objetos.push_back(new Sofa()); }
