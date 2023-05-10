@@ -24,6 +24,7 @@ SOURCES += main.cpp \
     pessoal/carro.cpp \
     pessoal/circle.cpp \
     pessoal/cubo.cpp \
+    pessoal/fogao.cpp \
     pessoal/guardaroupa.cpp \
     pessoal/mesa.cpp \
     pessoal/objeto.cpp \
@@ -45,6 +46,7 @@ HEADERS += \
     pessoal/carro.h \
     pessoal/circle.h \
     pessoal/cubo.h \
+    pessoal/fogao.h \
     pessoal/guardaroupa.h \
     pessoal/mesa.h \
     pessoal/objeto.h \

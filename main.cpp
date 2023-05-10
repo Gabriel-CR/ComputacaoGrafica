@@ -14,6 +14,7 @@ using namespace std;
 #include <guardaroupa.h>
 #include <cadeira.h>
 #include <mesa.h>
+#include <fogao.h>
 
 Vetor3D t = Vetor3D(0, 0, 0);
 Vetor3D r = Vetor3D(0, 0, 0);
@@ -54,6 +55,8 @@ void selecionar_anterior() {
     zerar_vetores();
 }
 
+//Fogao c = Fogao();
+
 void desenha() {
     GUI::displayInit();
     GUI::setLight(0, 1,2,3, true, false);
@@ -62,20 +65,18 @@ void desenha() {
     GUI::drawOriginAL(2.5);
 
 
-//    if (desenha_objetos) {
-//        for (int i = 0; i < (int)objetos.size(); i++) {
-//            if (objetos[i]->selecionado) {
-//                objetos[i]->translacao = t;
-//                objetos[i]->rotacao = r;
-//                objetos[i]->escala = e;
-//            }
-//            objetos[i]->desenha();
-//        }
-//    }
+    if (desenha_objetos) {
+        for (int i = 0; i < (int)objetos.size(); i++) {
+            if (objetos[i]->selecionado) {
+                objetos[i]->translacao = t;
+                objetos[i]->rotacao = r;
+                objetos[i]->escala = e;
+            }
+            objetos[i]->desenha();
+        }
+    }
 
-
-    Mesa c = Mesa();
-    c.desenha();
+//    c.desenha();
 
     t.x += glutGUI::dtx;
     t.y += glutGUI::dty;
@@ -132,10 +133,16 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'T':
         if (desenha_objetos) { objetos.push_back(new Televisao()); }
         break;
+    case 'm':
+        if (desenha_objetos) { objetos.push_back(new Mesa()); }
+        break;
+    case 'f':
+        if (desenha_objetos) { objetos.push_back(new Fogao()); }
+        break;
+
     case 'L':
         objetos[s]->desenha_local = !objetos[s]->desenha_local;
         break;
-
     case '-':   // zerar t, r, e && colocar uma função para essa operação
         if (objetos.size() > 0) { selecionar_anterior(); }
         break;

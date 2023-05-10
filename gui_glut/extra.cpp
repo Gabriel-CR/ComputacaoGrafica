@@ -348,9 +348,9 @@ void glutGUI::defaultKey(unsigned char key, int x, int y)
         savedCamera[8] = cam->u.z;
         break;
 
-    case 'm':
-        mouse_lock = MouseLock( ( int(mouse_lock) + 1 )%3 );
-        break;
+//    case 'm':
+//        mouse_lock = MouseLock( ( int(mouse_lock) + 1 )%3 );
+//        break;
 
     case 'i':
         glutGUI::tx = 0.0;
