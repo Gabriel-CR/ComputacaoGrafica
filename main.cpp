@@ -12,6 +12,7 @@ using namespace std;
 #include <televisao.h>
 #include <cama.h>
 #include <guardaroupa.h>
+#include <cadeira.h>
 
 Vetor3D t = Vetor3D(0, 0, 0);
 Vetor3D r = Vetor3D(0, 0, 0);
@@ -59,6 +60,7 @@ void desenha() {
     GUI::drawFloor();
     GUI::drawOriginAL(2.5);
 
+
     if (desenha_objetos) {
         for (int i = 0; i < (int)objetos.size(); i++) {
             if (objetos[i]->selecionado) {
@@ -69,6 +71,10 @@ void desenha() {
             objetos[i]->desenha();
         }
     }
+
+
+//    Cadeira c = Cadeira();
+//    c.desenha();
 
     t.x += glutGUI::dtx;
     t.y += glutGUI::dty;
@@ -84,9 +90,10 @@ void desenha() {
 }
 
 void teclado(unsigned char tecla, int mx, int my) {
-    if (desenha_objetos) {
-        GUI::keyInit(tecla, mx,my);
-    }
+//    if (desenha_objetos) {
+//        GUI::keyInit(tecla, mx,my);
+//    }
+    GUI::keyInit(tecla, mx,my);
 
     switch (tecla) {
     case 't':
@@ -112,6 +119,9 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'c':
         if (desenha_objetos) { objetos.push_back(new Carro()); }
         break;
+    case 'C':
+        if (desenha_objetos) { objetos.push_back(new Cadeira()); }
+        break;
     case 'g':
         if (desenha_objetos) { objetos.push_back(new GuardaRoupa()); }
         break;
@@ -126,10 +136,10 @@ void teclado(unsigned char tecla, int mx, int my) {
         break;
 
     case '-':   // zerar t, r, e && colocar uma função para essa operação
-        selecionar_anterior();
+        if (objetos.size() > 0) { selecionar_anterior(); }
         break;
     case '+':   // zerar t, r, e && colocar uma função para essa operação
-        selecionar_proximo();
+        if (objetos.size() > 0) { selecionar_proximo(); }
         break;
 
     default:
