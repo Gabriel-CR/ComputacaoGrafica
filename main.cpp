@@ -10,7 +10,6 @@ using namespace std;
 #include <cubo.h>
 #include <sofa.h>
 #include <televisao.h>
-#include <caixasom.h>
 #include <cama.h>
 #include <guardaroupa.h>
 
@@ -113,9 +112,6 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'c':
         if (desenha_objetos) { objetos.push_back(new Carro()); }
         break;
-    case 'C':
-        if (desenha_objetos) { objetos.push_back(new CaixaSom()); }
-        break;
     case 'g':
         if (desenha_objetos) { objetos.push_back(new GuardaRoupa()); }
         break;
@@ -124,6 +120,9 @@ void teclado(unsigned char tecla, int mx, int my) {
         break;
     case 'T':
         if (desenha_objetos) { objetos.push_back(new Televisao()); }
+        break;
+    case 'L':
+        objetos[s]->desenha_local = !objetos[s]->desenha_local;
         break;
 
     case '-':   // zerar t, r, e && colocar uma função para essa operação

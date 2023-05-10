@@ -19,7 +19,7 @@ SOURCES += main.cpp \
     bib/Vetor3D.cpp \
     gui_glut/extra.cpp \
     gui_glut/gui.cpp \
-    pessoal/caixasom.cpp \
+    pessoal/cadeira.cpp \
     pessoal/cama.cpp \
     pessoal/carro.cpp \
     pessoal/circle.cpp \
@@ -39,7 +39,7 @@ HEADERS += \
     bib/Vetor3D.h \
     gui_glut/extra.h \
     gui_glut/gui.h \
-    pessoal/caixasom.h \
+    pessoal/cadeira.h \
     pessoal/cama.h \
     pessoal/carro.h \
     pessoal/circle.h \

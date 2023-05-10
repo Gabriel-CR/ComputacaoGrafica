@@ -6,14 +6,6 @@ Televisao::Televisao() {
 void Televisao::desenha() {
     Cubo c = Cubo();
 
-//    glTranslatef(translacao.x, translacao.y, translacao.z);
-//    glRotatef(rotacao.z, 0, 0, 1);
-//    glRotatef(rotacao.y, 0, 1, 0);
-//    glRotatef(rotacao.x, 1, 0, 0);
-//    if (this->desenha_local) { GUI::drawOrigin(1); }
-//    glScalef(escala.x, escala.y, escala.z);
-
-
     glPushMatrix();
         Objeto::desenha();
         glPushMatrix();
