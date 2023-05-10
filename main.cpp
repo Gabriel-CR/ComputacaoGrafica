@@ -46,18 +46,11 @@ void selecionar_proximo() {
     }
 }
 
-void selecionar_anterior() { // TODO
+void selecionar_anterior() {
+    objetos[s]->selecionado = false;
+    (s == 0) ? s = objetos.size() - 1 : s -= 1;
+    objetos[s]->selecionado = true;
     zerar_vetores();
-
-    if (s > -1) {
-        (s - 1) < 0 ? s = 0 : s = s - 1;
-        objetos[s]->selecionado = true;
-        if (s < -1) {
-            objetos[s + 1]->selecionado = false;
-            cout << "teste" << endl;
-        }
-        cout << s << endl;
-    }
 }
 
 void desenha() {
@@ -92,7 +85,9 @@ void desenha() {
 }
 
 void teclado(unsigned char tecla, int mx, int my) {
-    GUI::keyInit(tecla, mx,my);
+    if (desenha_objetos) {
+        GUI::keyInit(tecla, mx,my);
+    }
 
     switch (tecla) {
     case 't':
