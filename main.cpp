@@ -13,6 +13,7 @@ using namespace std;
 #include <cama.h>
 #include <guardaroupa.h>
 #include <cadeira.h>
+#include <mesa.h>
 
 Vetor3D t = Vetor3D(0, 0, 0);
 Vetor3D r = Vetor3D(0, 0, 0);
@@ -61,20 +62,20 @@ void desenha() {
     GUI::drawOriginAL(2.5);
 
 
-    if (desenha_objetos) {
-        for (int i = 0; i < (int)objetos.size(); i++) {
-            if (objetos[i]->selecionado) {
-                objetos[i]->translacao = t;
-                objetos[i]->rotacao = r;
-                objetos[i]->escala = e;
-            }
-            objetos[i]->desenha();
-        }
-    }
+//    if (desenha_objetos) {
+//        for (int i = 0; i < (int)objetos.size(); i++) {
+//            if (objetos[i]->selecionado) {
+//                objetos[i]->translacao = t;
+//                objetos[i]->rotacao = r;
+//                objetos[i]->escala = e;
+//            }
+//            objetos[i]->desenha();
+//        }
+//    }
 
 
-//    Cadeira c = Cadeira();
-//    c.desenha();
+    Mesa c = Mesa();
+    c.desenha();
 
     t.x += glutGUI::dtx;
     t.y += glutGUI::dty;
