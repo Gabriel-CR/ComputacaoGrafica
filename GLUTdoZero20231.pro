@@ -30,6 +30,7 @@ SOURCES += main.cpp \
     pessoal/mesa.cpp \
     pessoal/microondas.cpp \
     pessoal/objeto.cpp \
+    pessoal/pc.cpp \
     pessoal/shape.cpp \
     pessoal/sofa.cpp \
     pessoal/televisao.cpp
@@ -54,6 +55,7 @@ HEADERS += \
     pessoal/mesa.h \
     pessoal/microondas.h \
     pessoal/objeto.h \
+    pessoal/pc.h \
     pessoal/shape.h \
     pessoal/sofa.h \
     pessoal/televisao.h
