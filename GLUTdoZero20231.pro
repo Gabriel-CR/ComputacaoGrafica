@@ -29,6 +29,7 @@ SOURCES += main.cpp \
     pessoal/guardaroupa.cpp \
     pessoal/mesa.cpp \
     pessoal/microondas.cpp \
+    pessoal/mouse.cpp \
     pessoal/objeto.cpp \
     pessoal/pc.cpp \
     pessoal/shape.cpp \
@@ -54,6 +55,7 @@ HEADERS += \
     pessoal/guardaroupa.h \
     pessoal/mesa.h \
     pessoal/microondas.h \
+    pessoal/mouse.h \
     pessoal/objeto.h \
     pessoal/pc.h \
     pessoal/shape.h \

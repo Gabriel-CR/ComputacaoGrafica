@@ -18,6 +18,7 @@ using namespace std;
 #include <geladeira.h>
 #include <microondas.h>
 #include <pc.h>
+#include <mouse.h>
 
 Vetor3D t = Vetor3D(0, 0, 0);
 Vetor3D r = Vetor3D(0, 0, 0);
@@ -58,7 +59,7 @@ void selecionar_anterior() {
     zerar_vetores();
 }
 
-//Pc c = Pc();
+//Mouse c = Mouse();
 
 void desenha() {
     GUI::displayInit();
@@ -150,6 +151,9 @@ void teclado(unsigned char tecla, int mx, int my) {
         break;
     case 'p':
         if (desenha_objetos) { objetos.push_back(new Pc()); }
+        break;
+    case 'r':
+        if (desenha_objetos) { objetos.push_back(new Mouse()); }
         break;
 
     case 'L':
