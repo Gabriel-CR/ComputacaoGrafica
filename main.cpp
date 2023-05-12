@@ -21,6 +21,7 @@ using namespace std;
 #include <mouse.h>
 #include <documento.h>
 #include <mesapc.h>
+#include <piscina.h>
 
 Vetor3D t = Vetor3D(0, 0, 0);
 Vetor3D r = Vetor3D(0, 0, 0);
@@ -61,7 +62,7 @@ void selecionar_anterior() {
     zerar_vetores();
 }
 
-//MesaPc c = MesaPc();
+//Piscina c = Piscina();
 
 void desenha() {
     GUI::displayInit();
@@ -163,8 +164,10 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'e':
         if (desenha_objetos) { objetos.push_back(new MesaPc()); }
         break;
+    case 'a':
+        if (desenha_objetos) { objetos.push_back(new Piscina()); }
+        break;
     // ESCORREGADOR
-    // PISCINA
     // TETO
     // PAREDES
     // BANHEIRO
