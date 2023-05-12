@@ -20,6 +20,7 @@ using namespace std;
 #include <pc.h>
 #include <mouse.h>
 #include <documento.h>
+#include <mesapc.h>
 
 Vetor3D t = Vetor3D(0, 0, 0);
 Vetor3D r = Vetor3D(0, 0, 0);
@@ -60,7 +61,7 @@ void selecionar_anterior() {
     zerar_vetores();
 }
 
-//Documento c = Documento();
+//MesaPc c = MesaPc();
 
 void desenha() {
     GUI::displayInit();
@@ -159,6 +160,17 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'P':
         if (desenha_objetos) { objetos.push_back(new Documento()); }
         break;
+    case 'e':
+        if (desenha_objetos) { objetos.push_back(new MesaPc()); }
+        break;
+    // ESCORREGADOR
+    // PISCINA
+    // TETO
+    // PAREDES
+    // BANHEIRO
+        // VASO
+        // PIA
+        // CHOVEIRO
 
     case 'L':
         objetos[s]->desenha_local = !objetos[s]->desenha_local;
