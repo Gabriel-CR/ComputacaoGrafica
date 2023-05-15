@@ -35,6 +35,7 @@ SOURCES += main.cpp \
     pessoal/mouse.cpp \
     pessoal/objeto.cpp \
     pessoal/pc.cpp \
+    pessoal/pia.cpp \
     pessoal/piscina.cpp \
     pessoal/shape.cpp \
     pessoal/sofa.cpp \
@@ -66,6 +67,7 @@ HEADERS += \
     pessoal/mouse.h \
     pessoal/objeto.h \
     pessoal/pc.h \
+    pessoal/pia.h \
     pessoal/piscina.h \
     pessoal/shape.h \
     pessoal/sofa.h \
