@@ -38,7 +38,8 @@ SOURCES += main.cpp \
     pessoal/piscina.cpp \
     pessoal/shape.cpp \
     pessoal/sofa.cpp \
-    pessoal/televisao.cpp
+    pessoal/televisao.cpp \
+    pessoal/vasosanitario.cpp
 
 HEADERS += \
     bib/Camera.h \
@@ -68,4 +69,5 @@ HEADERS += \
     pessoal/piscina.h \
     pessoal/shape.h \
     pessoal/sofa.h \
-    pessoal/televisao.h
+    pessoal/televisao.h \
+    pessoal/vasosanitario.h

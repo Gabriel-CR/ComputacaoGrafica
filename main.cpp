@@ -23,6 +23,7 @@ using namespace std;
 #include <mesapc.h>
 #include <piscina.h>
 #include <escorregador.h>
+#include <vasosanitario.h>
 
 Vetor3D t = Vetor3D(0, 0, 0);
 Vetor3D r = Vetor3D(0, 0, 0);
@@ -63,7 +64,7 @@ void selecionar_anterior() {
     zerar_vetores();
 }
 
-//Escorregador c = Escorregador();
+//VasoSanitario c = VasoSanitario();
 
 void desenha() {
     GUI::displayInit();
@@ -171,10 +172,12 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'E':
         if (desenha_objetos) { objetos.push_back(new Escorregador()); }
         break;
+    case 'v':
+        if (desenha_objetos) { objetos.push_back(new VasoSanitario()); }
+        break;
     // TETO
     // PAREDES
     // BANHEIRO
-        // VASO
         // PIA
         // CHOVEIRO
 
