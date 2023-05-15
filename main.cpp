@@ -25,6 +25,7 @@ using namespace std;
 #include <escorregador.h>
 #include <vasosanitario.h>
 #include <pia.h>
+#include <chuveiro.h>
 
 Vetor3D t = Vetor3D(0, 0, 0);
 Vetor3D r = Vetor3D(0, 0, 0);
@@ -65,7 +66,7 @@ void selecionar_anterior() {
     zerar_vetores();
 }
 
-//Pia c = Pia();
+//Chuveiro c = Chuveiro();
 
 void desenha() {
     GUI::displayInit();
@@ -179,11 +180,11 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'k':
         if (desenha_objetos) { objetos.push_back(new Pia()); }
         break;
+    case 'V':
+        if (desenha_objetos) { objetos.push_back(new Chuveiro()); }
+        break;
     // TETO
     // PAREDES
-    // BANHEIRO
-        // PIA
-        // CHOVEIRO
 
     case 'L':
         objetos[s]->desenha_local = !objetos[s]->desenha_local;
