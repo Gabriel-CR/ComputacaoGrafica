@@ -211,7 +211,7 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'V':
         if (desenha_objetos) { objetos.push_back(new Chuveiro()); }
         break;
-    case '1':
+    case 'n':
         if (desenha_objetos) { cenario(); }
         break;
     // TETO
