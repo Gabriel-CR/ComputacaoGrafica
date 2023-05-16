@@ -66,13 +66,35 @@ void selecionar_anterior() {
     zerar_vetores();
 }
 
+void apagar_objeto() {
+    objetos.erase(objetos.begin() + s);
+}
+
+void apagar_ultimo_objeto() {
+    objetos.pop_back();
+}
+
 //Chuveiro c = Chuveiro();
+
+// USAR ESSA ESTRATÉGIA PARA DESENHAR O CENARIO
+// FATORAR ESSA ESTRATÉGIA PARA CADA CÔMODO DA CASA
+// AO SALVAR AS MODIFICAÇÕES DO CENÁRIO, USAR OS VALORES DOS VETORES PARA COLOCAR NO ARQUIVO
+//  vetores de rotacao, translacao, escala
+void cenario() {
+    objetos.clear();
+
+    objetos.push_back(new Sofa());
+    objetos.push_back(new Televisao());
+
+    objetos[0]->rotacao.add( Vetor3D(90, 0, 90) );
+    objetos[1]->translacao.add( Vetor3D(0, 0, -1) );
+}
 
 void desenha() {
     GUI::displayInit();
     GUI::setLight(0, 1,2,3, true, false);
     GUI::setColor(1,0.6,0);
-    GUI::drawFloor();
+    GUI::drawFloor(10, 10);
     GUI::drawOriginAL(2.5);
 
 
@@ -106,7 +128,7 @@ void teclado(unsigned char tecla, int mx, int my) {
 //    if (desenha_objetos) {
 //        GUI::keyInit(tecla, mx,my);
 //    }
-    GUI::keyInit(tecla, mx,my);
+//    GUI::keyInit(tecla, mx,my);
 
     switch (tecla) {
     case 't':
@@ -156,6 +178,12 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'f':
         if (desenha_objetos) { objetos.push_back(new Fogao()); }
         break;
+    case 'F':
+        if (s > -1) { apagar_objeto(); }
+        break;
+    case 'A':
+        if (s > -1) { apagar_ultimo_objeto(); }
+        break;
     case 'p':
         if (desenha_objetos) { objetos.push_back(new Pc()); }
         break;
@@ -182,6 +210,9 @@ void teclado(unsigned char tecla, int mx, int my) {
         break;
     case 'V':
         if (desenha_objetos) { objetos.push_back(new Chuveiro()); }
+        break;
+    case '1':
+        if (desenha_objetos) { cenario(); }
         break;
     // TETO
     // PAREDES
