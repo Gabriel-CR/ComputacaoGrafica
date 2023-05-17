@@ -308,10 +308,10 @@ void glutGUI::defaultKey(unsigned char key, int x, int y)
 //    case 'o':
 //        glutGUI::perspective = !glutGUI::perspective;
 //        break;
-    case 'O':
-        glutGUI::ortho = !glutGUI::ortho;
-        glutGUI::pontosDeFuga = !glutGUI::pontosDeFuga;
-        break;
+//    case 'O':
+//        glutGUI::ortho = !glutGUI::ortho;
+//        glutGUI::pontosDeFuga = !glutGUI::pontosDeFuga;
+//        break;
 
     //case 'l':
     //    enabled_light[7] = !enabled_light[7];

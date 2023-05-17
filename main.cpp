@@ -38,6 +38,7 @@ Vetor3D e = Vetor3D(1, 1, 1);
 vector<Objeto*> objetos;
 
 bool desenha_objetos = false;
+bool selecionar = true;
 int s = (int)objetos.size() - 1;
 int cam_id = 0;
 
@@ -48,27 +49,31 @@ void zerar_vetores() {
 }
 
 void selecionar_proximo() {
-    if (s == (int)objetos.size() - 1) {
-        objetos[s]->selecionado = false;
-    }
+    if (selecionar) {
+        if (s == (int)objetos.size() - 1) {
+            objetos[s]->selecionado = false;
+        }
 
-    s = (s + 1) % (int)objetos.size();
+        s = (s + 1) % (int)objetos.size();
 
-    zerar_vetores();
+        zerar_vetores();
 
-    if (s == 0) {
-        objetos[s]->selecionado = true;
-    } else {
-        objetos[s]->selecionado = true;
-        objetos[s - 1]->selecionado = false;
+        if (s == 0) {
+            objetos[s]->selecionado = true;
+        } else {
+            objetos[s]->selecionado = true;
+            objetos[s - 1]->selecionado = false;
+        }
     }
 }
 
 void selecionar_anterior() {
-    objetos[s]->selecionado = false;
-    (s == 0) ? s = objetos.size() - 1 : s -= 1;
-    objetos[s]->selecionado = true;
-    zerar_vetores();
+    if (selecionar) {
+        objetos[s]->selecionado = false;
+        (s == 0) ? s = objetos.size() - 1 : s -= 1;
+        objetos[s]->selecionado = true;
+        zerar_vetores();
+    }
 }
 
 void apagar_objeto() {
@@ -114,15 +119,18 @@ void trocar_camera() {
 void cenario() {
     objetos.clear();
 
-    objetos.push_back(new Sofa());
-    objetos.push_back(new Televisao());
+    objetos.push_back(new Parede());
 
-    objetos[0]->rotacao.add( Vetor3D(90, 0, 90) );
-    objetos[1]->translacao.add( Vetor3D(0, 0, -1) );
+    objetos.push_back(new Cama());
+    objetos.push_back(new MesaPc());
+    objetos.push_back(new Pc());
+    objetos.push_back(new Mouse());
+    objetos.push_back(new Documento());
+    // TECLADO
+    objetos.push_back(new Cadeira());
+    objetos.push_back(new GuardaRoupa());
+    objetos.push_back(new Cama());
 }
-
-//Parede c = Parede();
-//Teto d = Teto();
 
 void desenha() {
     GUI::displayInit();
@@ -142,9 +150,6 @@ void desenha() {
         }
     }
 
-//    c.desenha();
-//    d.desenha();
-
     t.x += glutGUI::dtx;
     t.y += glutGUI::dty;
     t.z += glutGUI::dtz;
@@ -159,12 +164,12 @@ void desenha() {
 }
 
 void teclado(unsigned char tecla, int mx, int my) {
-//    if (desenha_objetos) {
-//        GUI::keyInit(tecla, mx,my);
-//    }
 //    GUI::keyInit(tecla, mx,my);
 
     switch (tecla) {
+    case 27:
+        exit(0);
+        break;
     case 't':
         glutGUI::trans_obj = !glutGUI::trans_obj;
         break;
@@ -266,6 +271,10 @@ void teclado(unsigned char tecla, int mx, int my) {
         break;
     case '+':   // zerar t, r, e && colocar uma função para essa operação
         if (objetos.size() > 0) { selecionar_proximo(); }
+        break;
+    case '/':   // zerar t, r, e && colocar uma função para essa operação
+        selecionar = !selecionar;
+        objetos[s]->selecionado = false;
         break;
 
     default:
