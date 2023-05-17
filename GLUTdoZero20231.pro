@@ -36,6 +36,7 @@ SOURCES += main.cpp \
     pessoal/microondas.cpp \
     pessoal/mouse.cpp \
     pessoal/objeto.cpp \
+    pessoal/parede.cpp \
     pessoal/pc.cpp \
     pessoal/pia.cpp \
     pessoal/piscina.cpp \
@@ -70,6 +71,7 @@ HEADERS += \
     pessoal/microondas.h \
     pessoal/mouse.h \
     pessoal/objeto.h \
+    pessoal/parede.h \
     pessoal/pc.h \
     pessoal/pia.h \
     pessoal/piscina.h \

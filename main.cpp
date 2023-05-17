@@ -3,6 +3,8 @@
 
 using namespace std;
 
+#include <controller.h>
+
 #include <gui.h>
 #include <objeto.h>
 
@@ -26,6 +28,7 @@ using namespace std;
 #include <vasosanitario.h>
 #include <pia.h>
 #include <chuveiro.h>
+#include <parede.h>
 
 Vetor3D t = Vetor3D(0, 0, 0);
 Vetor3D r = Vetor3D(0, 0, 0);
@@ -103,8 +106,6 @@ void trocar_camera() {
     }
 }
 
-//Chuveiro c = Chuveiro();
-
 // USAR ESSA ESTRATÉGIA PARA DESENHAR O CENARIO
 // FATORAR ESSA ESTRATÉGIA PARA CADA CÔMODO DA CASA
 // AO SALVAR AS MODIFICAÇÕES DO CENÁRIO, USAR OS VALORES DOS VETORES PARA COLOCAR NO ARQUIVO
@@ -119,28 +120,28 @@ void cenario() {
     objetos[1]->translacao.add( Vetor3D(0, 0, -1) );
 }
 
-CameraJogo cam = CameraJogo(2, 0, 0, 0, 0, 0, 0, 1, 0);
+Parede c = Parede();
 
 void desenha() {
     GUI::displayInit();
     GUI::setLight(0, 1,2,3, true, false);
     GUI::setColor(1,0.6,0);
-    GUI::drawFloor(10, 10);
+    GUI::drawFloor(15, 13);
     GUI::drawOriginAL(2.5);
 
 
-    if (desenha_objetos) {
-        for (int i = 0; i < (int)objetos.size(); i++) {
-            if (objetos[i]->selecionado) {
-                objetos[i]->translacao = t;
-                objetos[i]->rotacao = r;
-                objetos[i]->escala = e;
-            }
-            objetos[i]->desenha();
-        }
-    }
+//    if (desenha_objetos) {
+//        for (int i = 0; i < (int)objetos.size(); i++) {
+//            if (objetos[i]->selecionado) {
+//                objetos[i]->translacao = t;
+//                objetos[i]->rotacao = r;
+//                objetos[i]->escala = e;
+//            }
+//            objetos[i]->desenha();
+//        }
+//    }
 
-//    c.desenha();
+    c.desenha();
 
     t.x += glutGUI::dtx;
     t.y += glutGUI::dty;

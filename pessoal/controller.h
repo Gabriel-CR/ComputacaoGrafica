@@ -2,8 +2,7 @@
 #define CONTROLLER_H
 
 
-class Controller
-{
+class Controller {
 public:
     Controller();
 };
