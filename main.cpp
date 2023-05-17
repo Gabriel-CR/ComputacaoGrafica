@@ -29,6 +29,7 @@ using namespace std;
 #include <pia.h>
 #include <chuveiro.h>
 #include <parede.h>
+#include <teto.h>
 
 Vetor3D t = Vetor3D(0, 0, 0);
 Vetor3D r = Vetor3D(0, 0, 0);
@@ -121,6 +122,7 @@ void cenario() {
 }
 
 Parede c = Parede();
+Teto d = Teto();
 
 void desenha() {
     GUI::displayInit();
@@ -129,18 +131,19 @@ void desenha() {
     GUI::drawFloor(15, 13);
     GUI::drawOriginAL(2.5);
 
-//    if (desenha_objetos) {
-//        for (int i = 0; i < (int)objetos.size(); i++) {
-//            if (objetos[i]->selecionado) {
-//                objetos[i]->translacao = t;
-//                objetos[i]->rotacao = r;
-//                objetos[i]->escala = e;
-//            }
-//            objetos[i]->desenha();
-//        }
-//    }
+    if (desenha_objetos) {
+        for (int i = 0; i < (int)objetos.size(); i++) {
+            if (objetos[i]->selecionado) {
+                objetos[i]->translacao = t;
+                objetos[i]->rotacao = r;
+                objetos[i]->escala = e;
+            }
+            objetos[i]->desenha();
+        }
+    }
 
     c.desenha();
+    d.desenha();
 
     t.x += glutGUI::dtx;
     t.y += glutGUI::dty;
@@ -209,12 +212,6 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'f':
         if (desenha_objetos) { objetos.push_back(new Fogao()); }
         break;
-    case 'F':
-        if (s > -1) { apagar_objeto(); }
-        break;
-    case 'A':
-        if (s > -1) { apagar_ultimo_objeto(); }
-        break;
     case 'p':
         if (desenha_objetos) { objetos.push_back(new Pc()); }
         break;
@@ -242,16 +239,23 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'V':
         if (desenha_objetos) { objetos.push_back(new Chuveiro()); }
         break;
+    case 'o':
+        if (desenha_objetos) { objetos.push_back(new Parede()); }
+        break;
+    // TETO
+    // PAREDES
     case 'n':
         if (desenha_objetos) { cenario(); }
         break;
     case 'Q':
         trocar_camera();
         break;
-    // TETO
-    // PAREDES
-
-
+    case 'F':
+        if (s > -1) { apagar_objeto(); }
+        break;
+    case 'A':
+        if (s > -1) { apagar_ultimo_objeto(); }
+        break;
     case 'L':
         objetos[s]->desenha_local = !objetos[s]->desenha_local;
         break;

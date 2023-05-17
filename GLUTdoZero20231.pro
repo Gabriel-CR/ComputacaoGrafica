@@ -43,6 +43,7 @@ SOURCES += main.cpp \
     pessoal/shape.cpp \
     pessoal/sofa.cpp \
     pessoal/televisao.cpp \
+    pessoal/teto.cpp \
     pessoal/vasosanitario.cpp
 
 HEADERS += \
@@ -78,4 +79,5 @@ HEADERS += \
     pessoal/shape.h \
     pessoal/sofa.h \
     pessoal/televisao.h \
+    pessoal/teto.h \
     pessoal/vasosanitario.h

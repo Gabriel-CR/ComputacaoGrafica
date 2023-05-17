@@ -305,9 +305,9 @@ void glutGUI::defaultKey(unsigned char key, int x, int y)
         glutReshapeWindow(800,600);
         break;
 
-    case 'o':
-        glutGUI::perspective = !glutGUI::perspective;
-        break;
+//    case 'o':
+//        glutGUI::perspective = !glutGUI::perspective;
+//        break;
     case 'O':
         glutGUI::ortho = !glutGUI::ortho;
         glutGUI::pontosDeFuga = !glutGUI::pontosDeFuga;
