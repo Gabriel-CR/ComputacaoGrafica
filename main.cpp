@@ -123,13 +123,18 @@ void cenario() {
 
     objetos.push_back(new Cama());
     objetos.push_back(new MesaPc());
-    objetos.push_back(new Pc());
+//    objetos.push_back(new Pc());
     objetos.push_back(new Mouse());
     objetos.push_back(new Documento());
     // TECLADO
     objetos.push_back(new Cadeira());
     objetos.push_back(new GuardaRoupa());
     objetos.push_back(new Cama());
+
+    objetos[0]->translacao.add(Vetor3D(3, 0, 0));
+    objetos[6]->translacao.add(Vetor3D(0, 0, 2));
+    // criar uma função em objeto que retorna as coordenadas de t, r, e em string para salvar no arquivo
+//    cout << objetos[0]->translacao.x << objetos[0]->translacao.y << objetos[0]->translacao.z << endl;
 }
 
 void desenha() {
