@@ -35,6 +35,7 @@ vector<Objeto*> objetos;
 
 bool desenha_objetos = false;
 int s = (int)objetos.size() - 1;
+int cam_id = 0;
 
 void zerar_vetores() {
     t = objetos[s]->translacao;
@@ -74,6 +75,34 @@ void apagar_ultimo_objeto() {
     objetos.pop_back();
 }
 
+void trocar_camera() {
+    (cam_id + 1 > 6) ? cam_id = 0 : cam_id += 1;
+
+    switch (cam_id) {
+    case 0:
+        glutGUI::cam = new CameraDistante(0,10,20, 0,0,0, 0,1,0);
+        break;
+    case 1:
+        glutGUI::cam = new CameraDistante(8,19,21,  1,1,3,  0,1,0);
+        break;
+    case 2:
+        glutGUI::cam = new CameraDistante(8,10,10,  1,1,3,  0,1,0);
+        break;
+    case 3:
+        glutGUI::cam = new CameraDistante(8,5,3,  1,1,3,  0,1,0);
+        break;
+    case 4:
+        glutGUI::cam = new CameraJogo(8,1,2,  1,1,3,  0,1,0);
+        break;
+    case 5:
+        glutGUI::cam = new CameraJogo(8,9,2,  1,1,3,  0,1,0);
+        break;
+    case 6:
+        glutGUI::cam = new CameraJogo(8,4,7,  1,1,3,  0,1,0);
+        break;
+    }
+}
+
 //Chuveiro c = Chuveiro();
 
 // USAR ESSA ESTRATÉGIA PARA DESENHAR O CENARIO
@@ -89,6 +118,8 @@ void cenario() {
     objetos[0]->rotacao.add( Vetor3D(90, 0, 90) );
     objetos[1]->translacao.add( Vetor3D(0, 0, -1) );
 }
+
+CameraJogo cam = CameraJogo(2, 0, 0, 0, 0, 0, 0, 1, 0);
 
 void desenha() {
     GUI::displayInit();
@@ -128,7 +159,7 @@ void teclado(unsigned char tecla, int mx, int my) {
 //    if (desenha_objetos) {
 //        GUI::keyInit(tecla, mx,my);
 //    }
-//    GUI::keyInit(tecla, mx,my);
+    GUI::keyInit(tecla, mx,my);
 
     switch (tecla) {
     case 't':
@@ -214,8 +245,12 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'n':
         if (desenha_objetos) { cenario(); }
         break;
+    case 'Q':
+        trocar_camera();
+        break;
     // TETO
     // PAREDES
+
 
     case 'L':
         objetos[s]->desenha_local = !objetos[s]->desenha_local;
