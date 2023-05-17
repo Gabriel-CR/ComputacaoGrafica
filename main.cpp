@@ -121,8 +121,8 @@ void cenario() {
     objetos[1]->translacao.add( Vetor3D(0, 0, -1) );
 }
 
-Parede c = Parede();
-Teto d = Teto();
+//Parede c = Parede();
+//Teto d = Teto();
 
 void desenha() {
     GUI::displayInit();
@@ -142,8 +142,8 @@ void desenha() {
         }
     }
 
-    c.desenha();
-    d.desenha();
+//    c.desenha();
+//    d.desenha();
 
     t.x += glutGUI::dtx;
     t.y += glutGUI::dty;
@@ -162,7 +162,7 @@ void teclado(unsigned char tecla, int mx, int my) {
 //    if (desenha_objetos) {
 //        GUI::keyInit(tecla, mx,my);
 //    }
-    GUI::keyInit(tecla, mx,my);
+//    GUI::keyInit(tecla, mx,my);
 
     switch (tecla) {
     case 't':
@@ -242,8 +242,10 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'o':
         if (desenha_objetos) { objetos.push_back(new Parede()); }
         break;
-    // TETO
-    // PAREDES
+    case 'O':
+        if (desenha_objetos) { objetos.push_back(new Teto()); }
+        break;
+
     case 'n':
         if (desenha_objetos) { cenario(); }
         break;
