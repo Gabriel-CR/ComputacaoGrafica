@@ -10,25 +10,32 @@ void Parede::desenha() {
         Objeto::desenha();
         glPushMatrix(); // PAREDE ESQUERDA
             (this->selecionado) ? GUI::setColor(0, 1, 0) : GUI::setColor(1, 1, 1);
-            glTranslatef(-1.5, 0, 0);
-            glScalef(0.05, 2.5, 13);
+            glTranslatef(-1.5, 0, -4);
+            glScalef(0.05, 2.5, 5);
+            c.desenha();
+        glPopMatrix();
+        glPushMatrix(); // CHAO
+            (this->selecionado) ? GUI::setColor(0, 1, 0) : GUI::setColor(0.9, 0.9, 0.9);
+            glTranslatef(3, 0, 0);
+            glScalef(9, 0.05, 13);
             c.desenha();
         glPopMatrix();
         glPushMatrix(); // PAREDE DIREITA
+            (this->selecionado) ? GUI::setColor(0, 1, 0) : GUI::setColor(1, 1, 1);
             glTranslatef(7.5, 0, 0);
-            glScalef(0.05, 2.5, 10);
+            glScalef(0.05, 2.5, 13);
             c.desenha();
         glPopMatrix();
         glPushMatrix(); // PAREDE FRENTE
-            glTranslatef(1.48, 0, 6.5);
+            glTranslatef(3, 0, 6.5);
             glRotatef(90, 0, 1, 0);
-            glScalef(0.05, 2.5, 6);
+            glScalef(0.05, 2.5, 9);
             c.desenha();
         glPopMatrix();
         glPushMatrix(); // PAREDE TRAS
-            glTranslatef(1, 0, -6.5);
+            glTranslatef(3, 0, -6.5);
             glRotatef(90, 0, 1, 0);
-            glScalef(0.05, 2.5, 5);
+            glScalef(0.05, 2.5, 9);
             c.desenha();
         glPopMatrix();
         glPushMatrix(); // PAREDE COZINHA SALA
@@ -37,15 +44,45 @@ void Parede::desenha() {
             glScalef(0.05, 2.5, 5);
             c.desenha();
         glPopMatrix();
-        glPushMatrix(); // PAREDE SALA QUARTO 1
+        glPushMatrix(); // PAREDE SALA QUARTO
             glTranslatef(1, 0, 1.5);
             glRotatef(90, 0, 1, 0);
             glScalef(0.05, 2.5, 5);
             c.desenha();
         glPopMatrix();
-        glPushMatrix(); // PAREDE QUARTO BANHEIRO SUITE
+        glPushMatrix(); // PAREDE BANHEIRO
+            glTranslatef(5.5, 0, 1.5);
+            glRotatef(90, 0, 1, 0);
+            glScalef(0.05, 2.5, 2);
+            c.desenha();
+        glPopMatrix();
+        glPushMatrix(); // PAREDE QUARTO BANHEIRO
             glTranslatef(4.5, 0, 4);
             glScalef(0.05, 2.5, 5);
+            c.desenha();
+        glPopMatrix();
+        glPushMatrix(); // VIDRO PORTA QUARTO
+            (this->selecionado) ? GUI::setColor(0, 1, 0) : GUI::setColor(1, 1, 1, 0.5);
+            glTranslatef(-1.5, 0, 5.2);
+            glScalef(0.05, 2.5, 2.7);
+            c.desenha();
+        glPopMatrix();
+        glPushMatrix(); // VIDRO PORTA QUARTO
+            (this->selecionado) ? GUI::setColor(0, 1, 0) : GUI::setColor(1, 1, 1, 0.5);
+            glTranslatef(-1.55, 0, 2.8);
+            glScalef(0.05, 2.5, 2.7);
+            c.desenha();
+        glPopMatrix();
+        glPushMatrix(); // VIDRO PORTA SALA
+            (this->selecionado) ? GUI::setColor(0, 1, 0) : GUI::setColor(1, 1, 1, 0.5);
+            glTranslatef(-1.5, 0, -0.7);
+            glScalef(0.05, 2.5, 1.7);
+            c.desenha();
+        glPopMatrix();
+        glPushMatrix(); // VIDRO PORTA SALA
+            (this->selecionado) ? GUI::setColor(0, 1, 0) : GUI::setColor(1, 1, 1, 0.5);
+            glTranslatef(-1.55, 0, -0.3);
+            glScalef(0.05, 2.5, 1.7);
             c.desenha();
         glPopMatrix();
     glPopMatrix();

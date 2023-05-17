@@ -124,11 +124,10 @@ Parede c = Parede();
 
 void desenha() {
     GUI::displayInit();
-    GUI::setLight(0, 1,2,3, true, false);
+    GUI::setLight(0, -5,5,3, true, false);
     GUI::setColor(1,0.6,0);
     GUI::drawFloor(15, 13);
     GUI::drawOriginAL(2.5);
-
 
 //    if (desenha_objetos) {
 //        for (int i = 0; i < (int)objetos.size(); i++) {
