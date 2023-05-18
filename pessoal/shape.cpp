@@ -3,6 +3,9 @@
 Shape::Shape() {
 }
 
+Shape::~Shape() {
+}
+
 void Shape::desenha() {
 //    GUI::setColor(0.871/0.6, 0.416/0.6, 0.047/0.6);
     glBegin(GL_POLYGON);

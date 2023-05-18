@@ -4,6 +4,10 @@ Documento::Documento() {
     documento = new Model3DS("../3ds/documento.3DS");
 }
 
+Documento::~Documento() {
+    delete documento;
+}
+
 void Documento::desenha() {
     Cubo c = Cubo();
 

@@ -4,6 +4,10 @@ Pc::Pc() {
     pc = new Model3DS("../3ds/pc.3DS");
 }
 
+Pc::~Pc() {
+    delete pc;
+}
+
 void Pc::desenha() {
     Cubo c = Cubo();
     glPushMatrix();

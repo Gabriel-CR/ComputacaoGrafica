@@ -3,6 +3,9 @@
 Cadeira::Cadeira() {
 }
 
+Cadeira::~Cadeira() {
+}
+
 void Cadeira::desenha() {
     Cubo c = Cubo();
 

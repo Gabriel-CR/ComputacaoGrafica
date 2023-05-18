@@ -14,6 +14,7 @@ public:
 
 public:
     Objeto();
+    ~Objeto();
     virtual void desenha();
     void setTranslacao(Vetor3D vetor);
     void setRotacao(Vetor3D vetor);

@@ -3,6 +3,9 @@
 Teto::Teto() {
 }
 
+Teto::~Teto() {
+}
+
 void Teto::desenha() {
     Cubo c = Cubo();
 

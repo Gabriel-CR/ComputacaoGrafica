@@ -8,6 +8,7 @@ class Chuveiro : public Objeto {
     Model3DS* chuveiro;
 public:
     Chuveiro();
+    ~Chuveiro();
     void desenha();
 };
 

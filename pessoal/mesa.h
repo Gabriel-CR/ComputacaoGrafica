@@ -7,6 +7,7 @@
 class Mesa : public Objeto {
 public:
     Mesa();
+    ~Mesa();
     void desenha();
 };
 

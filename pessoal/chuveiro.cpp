@@ -4,6 +4,10 @@ Chuveiro::Chuveiro() {
     chuveiro = new Model3DS("../3ds/chuveiro.3DS");
 }
 
+Chuveiro::~Chuveiro() {
+    delete chuveiro;
+}
+
 void Chuveiro::desenha() {
     Cubo c = Cubo();
 

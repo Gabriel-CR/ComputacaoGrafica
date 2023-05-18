@@ -7,6 +7,7 @@
 class Pia : public Objeto {
 public:
     Pia();
+    ~Pia();
     void desenha();
 };
 

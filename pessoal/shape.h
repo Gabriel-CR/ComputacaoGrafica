@@ -6,6 +6,7 @@
 class Shape : public Objeto {
 public:
     Shape();
+    ~Shape();
     void desenha();
 };
 

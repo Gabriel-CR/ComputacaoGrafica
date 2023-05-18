@@ -8,6 +8,7 @@ class Microondas : public Objeto {
     Model3DS* microondas;
 public:
     Microondas();
+    ~Microondas();
     void desenha();
 };
 

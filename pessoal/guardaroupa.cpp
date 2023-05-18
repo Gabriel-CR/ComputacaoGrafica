@@ -3,6 +3,9 @@
 GuardaRoupa::GuardaRoupa() {
 }
 
+GuardaRoupa::~GuardaRoupa() {
+}
+
 void GuardaRoupa::desenha() {
     Shape s = Shape();
     Cubo c = Cubo();

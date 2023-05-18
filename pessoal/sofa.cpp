@@ -3,6 +3,9 @@
 Sofa::Sofa() {
 }
 
+Sofa::~Sofa() {
+}
+
 void Sofa::desenha() {
     Cubo c = Cubo();
 

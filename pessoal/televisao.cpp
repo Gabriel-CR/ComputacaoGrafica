@@ -3,6 +3,9 @@
 Televisao::Televisao() {
 }
 
+Televisao::~Televisao() {
+}
+
 void Televisao::desenha() {
     Cubo c = Cubo();
 

@@ -3,6 +3,9 @@
 Cubo::Cubo() {
 }
 
+Cubo::~Cubo() {
+}
+
 void Cubo::desenha() {
     Shape s = Shape();
 

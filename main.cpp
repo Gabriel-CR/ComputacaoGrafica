@@ -42,6 +42,13 @@ bool selecionar = true;
 int s = (int)objetos.size() - 1;
 int cam_id = 0;
 
+void deletar_objetos() {
+    cout << "deletando objetos" << endl;
+    for (int i = 0; i < (int)objetos.size(); i++) {
+        delete objetos[i];
+    }
+}
+
 void zerar_vetores() {
     t = objetos[s]->translacao;
     r = objetos[s]->rotacao;
@@ -117,24 +124,75 @@ void trocar_camera() {
 // AO SALVAR AS MODIFICAÇÕES DO CENÁRIO, USAR OS VALORES DOS VETORES PARA COLOCAR NO ARQUIVO
 //  vetores de rotacao, translacao, escala
 void cenario() {
+    cout << "desenhando..." << endl;
     objetos.clear();
-
-    objetos.push_back(new Parede());
 
     objetos.push_back(new Cama());
     objetos.push_back(new MesaPc());
-//    objetos.push_back(new Pc());
-    objetos.push_back(new Mouse());
+    objetos.push_back(new Pc());
     objetos.push_back(new Documento());
-    // TECLADO
     objetos.push_back(new Cadeira());
     objetos.push_back(new GuardaRoupa());
-    objetos.push_back(new Cama());
 
-    objetos[0]->translacao.add(Vetor3D(3, 0, 0));
-    objetos[6]->translacao.add(Vetor3D(0, 0, 2));
-    // criar uma função em objeto que retorna as coordenadas de t, r, e em string para salvar no arquivo
-//    cout << objetos[0]->translacao.x << objetos[0]->translacao.y << objetos[0]->translacao.z << endl;
+    objetos.push_back(new Sofa());
+    objetos.push_back(new Sofa());
+    objetos.push_back(new Televisao());
+
+    objetos.push_back(new Chuveiro());
+    objetos.push_back(new Pia());
+    objetos.push_back(new VasoSanitario());
+
+    objetos.push_back(new Mesa());
+    objetos.push_back(new Cadeira());
+    objetos.push_back(new Cadeira());
+
+    objetos.push_back(new Parede());
+
+    // CAMA
+    objetos[0]->translacao.add( Vetor3D(1, 0, 5.3) );
+    objetos[0]->rotacao.add( Vetor3D(0, -90, 0) );
+    // MESA PC
+    objetos[1]->translacao.add( Vetor3D(1, 0, 2.3) );
+    // PC
+    objetos[2]->translacao.add( Vetor3D(0.2, 1.1, 2.3) );
+    // DOCUMENTOS
+    objetos[3]->translacao.add( Vetor3D(1.7, 1.1, 2.3) );
+    // CADEIRA
+    objetos[4]->rotacao.add( Vetor3D(0, 180, 0) );
+    objetos[4]->translacao.add( Vetor3D(1, 0, 2.7) );
+    // GUARDA ROUPA
+    objetos[5]->rotacao.add( Vetor3D(0, -90, 0) );
+    objetos[5]->translacao.add( Vetor3D(4, 0, 4) );
+
+    // SOFA 1
+    objetos[6]->rotacao.add( Vetor3D(0, -90, 0) );
+    objetos[6]->translacao.add( Vetor3D(3, 0, -1) );
+    // SOFA 2
+    objetos[7]->rotacao.add( Vetor3D(0, 180, 0) );
+    objetos[7]->translacao.add( Vetor3D(1, 0, 0.5) );
+    // TELEVISAO
+    objetos[8]->translacao.add( Vetor3D(1, 0, -3) );
+
+    // CHUVEIRO
+    objetos[9]->rotacao.add( Vetor3D(0, 180, 0) );
+    objetos[9]->translacao.add( Vetor3D(6, 0, 6.5) );
+    // PIA
+    objetos[10]->rotacao.add( Vetor3D(0, 180, 0) );
+    objetos[10]->translacao.add( Vetor3D(7.1, 1, 3) );
+    // VASO SANITARIO
+    objetos[11]->rotacao.add( Vetor3D(0, 90, 0) );
+    objetos[11]->translacao.add( Vetor3D(5, 0, 3) );
+
+    // MESA
+    objetos[12]->translacao.add( Vetor3D(5.5, 0, -2) );
+    // CADEIRA 1
+    objetos[13]->translacao.add( Vetor3D(5.5, 0, -3) );
+    // CADEIRA 2
+    objetos[14]->rotacao.add( Vetor3D(0, 180, 0) );
+    objetos[14]->translacao.add( Vetor3D(5.5, 0, -1) );
+
+    // PAREDE
+    objetos[15]->translacao.add( Vetor3D(3, 0, 0) );
 }
 
 void desenha() {
@@ -155,6 +213,9 @@ void desenha() {
         }
     }
 
+//    Cama c = Cama();
+//    c.desenha();
+
     t.x += glutGUI::dtx;
     t.y += glutGUI::dty;
     t.z += glutGUI::dtz;
@@ -173,6 +234,7 @@ void teclado(unsigned char tecla, int mx, int my) {
 
     switch (tecla) {
     case 27:
+        deletar_objetos();
         exit(0);
         break;
     case 't':
@@ -291,5 +353,4 @@ int main() {
     cout << "Hello World!" << endl;
 
     GUI gui = GUI(800,600,desenha,teclado);
-    cout << s << endl;
 }

@@ -4,6 +4,10 @@ VasoSanitario::VasoSanitario() {
     vaso_sanitario = new Model3DS("../3ds/vaso.3DS");
 }
 
+VasoSanitario::~VasoSanitario() {
+    delete vaso_sanitario;
+}
+
 void VasoSanitario::desenha() {
     Cubo c = Cubo();
 

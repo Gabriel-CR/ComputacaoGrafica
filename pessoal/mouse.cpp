@@ -4,6 +4,10 @@ Mouse::Mouse() {
     mouse = new Model3DS("../3ds/mouse.3ds");
 }
 
+Mouse::~Mouse() {
+    delete mouse;
+}
+
 void Mouse::desenha() {
     Cubo c = Cubo();
 

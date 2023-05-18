@@ -4,6 +4,10 @@ Microondas::Microondas() {
     microondas = new Model3DS("../3ds/microondas.3ds");
 }
 
+Microondas::~Microondas() {
+    delete microondas;
+}
+
 void Microondas::desenha() {
     Cubo c = Cubo();
 

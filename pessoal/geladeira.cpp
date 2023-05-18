@@ -4,6 +4,10 @@ Geladeira::Geladeira() {
     geladeira = new Model3DS("../3ds/geladeira.3DS");
 }
 
+Geladeira::~Geladeira() {
+    delete geladeira;
+}
+
 void Geladeira::desenha() {
     Cubo c = Cubo();
 

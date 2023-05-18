@@ -7,6 +7,7 @@
 class Sofa : public Objeto {
 public:
     Sofa();
+    ~Sofa();
     void desenha();
 };
 

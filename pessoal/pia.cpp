@@ -3,6 +3,9 @@
 Pia::Pia() {
 }
 
+Pia::~Pia() {
+}
+
 void Pia::desenha() {
     Cubo c = Cubo();
 

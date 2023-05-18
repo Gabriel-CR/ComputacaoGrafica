@@ -8,6 +8,7 @@
 class GuardaRoupa : public Objeto {
 public:
     GuardaRoupa();
+    ~GuardaRoupa();
     void desenha();
 };
 

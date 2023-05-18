@@ -7,6 +7,7 @@
 class Parede : public Objeto {
 public:
     Parede();
+    ~Parede();
     void desenha();
 };
 

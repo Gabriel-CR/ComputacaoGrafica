@@ -9,6 +9,7 @@ class Fogao : public Objeto {
     Model3DS* fogao;
 public:
     Fogao();
+    ~Fogao();
     void desenha();
 };
 

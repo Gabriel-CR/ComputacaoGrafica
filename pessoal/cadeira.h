@@ -7,6 +7,7 @@
 class Cadeira : public Objeto {
 public:
     Cadeira();
+    ~Cadeira();
     void desenha();
 };
 

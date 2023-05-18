@@ -8,6 +8,7 @@
 class Cubo : public Objeto {
 public:
     Cubo();
+    ~Cubo();
     void desenha();
 };
 

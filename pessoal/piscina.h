@@ -8,6 +8,7 @@
 class Piscina : public Objeto {
 public:
     Piscina();
+    ~Piscina();
     void desenha();
 };
 

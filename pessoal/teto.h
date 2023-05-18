@@ -7,6 +7,7 @@
 class Teto : public Objeto {
 public:
     Teto();
+    ~Teto();
     void desenha();
 };
 

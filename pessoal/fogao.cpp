@@ -4,6 +4,10 @@ Fogao::Fogao() {
     fogao = new Model3DS("../3ds/fogao.3ds");
 }
 
+Fogao::~Fogao() {
+    delete fogao;
+}
+
 void Fogao::desenha() {
     Cubo c = Cubo();
 

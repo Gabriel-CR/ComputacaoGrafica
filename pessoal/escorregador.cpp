@@ -3,6 +3,9 @@
 Escorregador::Escorregador() {
 }
 
+Escorregador::~Escorregador() {
+}
+
 void Escorregador::desenha() {
     Cubo c = Cubo();
 

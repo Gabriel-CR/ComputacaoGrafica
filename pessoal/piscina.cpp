@@ -3,6 +3,9 @@
 Piscina::Piscina() {
 }
 
+Piscina::~Piscina() {
+}
+
 void Piscina::desenha() {
     Cubo c = Cubo();
     Shape s = Shape();

@@ -8,6 +8,7 @@ class Geladeira : public Objeto {
     Model3DS* geladeira;
 public:
     Geladeira();
+    ~Geladeira();
     void desenha();
 };
 

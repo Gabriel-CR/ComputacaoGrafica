@@ -7,6 +7,7 @@
 class Escorregador : public Objeto {
 public:
     Escorregador();
+    ~Escorregador();
     void desenha();
 };
 

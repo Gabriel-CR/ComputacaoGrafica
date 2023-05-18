@@ -8,6 +8,7 @@ class Mouse : public Objeto {
     Model3DS* mouse;
 public:
     Mouse();
+    ~Mouse();
     void desenha();
 };
 

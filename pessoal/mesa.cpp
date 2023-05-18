@@ -3,6 +3,9 @@
 Mesa::Mesa() {
 }
 
+Mesa::~Mesa() {
+}
+
 void Mesa::desenha() {
     Cubo c = Cubo();
 

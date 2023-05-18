@@ -3,6 +3,9 @@
 Parede::Parede() {
 }
 
+Parede::~Parede() {
+}
+
 void Parede::desenha() {
     Cubo c = Cubo();
 

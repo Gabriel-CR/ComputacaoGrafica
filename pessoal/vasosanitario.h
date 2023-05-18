@@ -8,6 +8,7 @@ class VasoSanitario : public Objeto {
     Model3DS* vaso_sanitario;
 public:
     VasoSanitario();
+    ~VasoSanitario();
     void desenha();
 };
 

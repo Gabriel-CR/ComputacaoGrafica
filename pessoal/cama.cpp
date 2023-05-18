@@ -3,11 +3,14 @@
 Cama::Cama() {
 }
 
-void Cama::desenha() {
+Cama::~Cama() {
+}
+
+void Cama::cama_solteiro() {
     Cubo c = Cubo();
 
     glPushMatrix();
-        Objeto::desenha();
+//        Objeto::desenha();
         glPushMatrix(); // colchao
             (this->selecionado) ? GUI::setColor(0, 1, 0) : GUI::setColor(0.5, 0, 0);
             glTranslatef(0, 0.15, 0);
@@ -24,6 +27,20 @@ void Cama::desenha() {
             glTranslatef(0.7, 0.35, 0);
             glScalef(0.5, 0.15, 0.7);
             c.desenha();
+        glPopMatrix();
+    glPopMatrix();
+}
+
+void Cama::desenha() {
+    glPushMatrix();
+        Objeto::desenha();
+        glPushMatrix();
+            glTranslatef(0, 0, 0.49);
+            cama_solteiro();
+        glPopMatrix();
+        glPushMatrix();
+            glTranslatef(0, 0, -0.49);
+            cama_solteiro();
         glPopMatrix();
     glPopMatrix();
 }

@@ -8,6 +8,7 @@ class Pc : public Objeto {
     Model3DS* pc;
 public:
     Pc();
+    ~Pc();
     void desenha();
 };
 

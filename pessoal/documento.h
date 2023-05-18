@@ -8,6 +8,7 @@ class Documento : public Objeto {
     Model3DS* documento;
 public:
     Documento();
+    ~Documento();
     void desenha();
 };
 
