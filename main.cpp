@@ -37,6 +37,7 @@ Vetor3D r = Vetor3D(0, 0, 0);
 Vetor3D e = Vetor3D(1, 1, 1);
 
 vector<Objeto*> objetos;
+vector<float> coordenadas;
 
 bool desenha_objetos = false;
 bool selecionar = true;
@@ -93,22 +94,22 @@ void trocar_camera() {
         glutGUI::cam = new CameraDistante(0,10,20, 0,0,0, 0,1,0);
         break;
     case 1:
-        glutGUI::cam = new CameraDistante(8,19,21,  1,1,3,  0,1,0);
+        glutGUI::cam = new CameraDistante(-4.59024,38.9058,4.10113,  0,-0.223607,0,  0,1,0);
         break;
     case 2:
-        glutGUI::cam = new CameraDistante(8,10,10,  1,1,3,  0,1,0);
+        glutGUI::cam = new CameraDistante(-18.6038,4.64228,-10.1431,  -3,0,3,  0,1,0);
         break;
     case 3:
-        glutGUI::cam = new CameraDistante(8,5,3,  1,1,3,  0,1,0);
+        glutGUI::cam = new CameraDistante(-20,4,0,  0,0,0,  0,1,0);
         break;
     case 4:
-        glutGUI::cam = new CameraJogo(8,1,2,  1,1,3,  0,1,0);
+        glutGUI::cam = new CameraJogo(-1.5,2,0,  0,2,0,  0,1,0);
         break;
     case 5:
-        glutGUI::cam = new CameraJogo(8,9,2,  1,1,3,  0,1,0);
+        glutGUI::cam = new CameraJogo(-1.5,2,4,  0,2,4,  0,1,0);
         break;
     case 6:
-        glutGUI::cam = new CameraJogo(8,4,7,  1,1,3,  0,1,0);
+        glutGUI::cam = new CameraJogo(-5,2,-5,  -2,0,0,  0,1,0);
         break;
     }
 }
@@ -136,6 +137,27 @@ void salvar_cenario() {
     } else {
         std::cout << "Não foi possível abrir o arquivo." << std::endl;
     }
+}
+
+void pegar_cenario() {
+    // Abre o arquivo no modo de leitura
+        std::ifstream arquivo("../cenario.txt");
+
+        if (arquivo.is_open()) {
+            std::string linha;
+
+            // Lê o arquivo linha por linha
+            while (std::getline(arquivo, linha)) {
+                float numero = std::stof(linha);
+                coordenadas.push_back(numero);
+            }
+
+            // Fecha o arquivo
+            arquivo.close();
+            cout << "coordenadas salvas com sucesso" << endl;
+        } else {
+            std::cout << "Não foi possível abrir o arquivo." << std::endl;
+        }
 }
 
 // USAR ESSA ESTRATÉGIA PARA DESENHAR O CENARIO
@@ -174,6 +196,28 @@ void cenario() {
     objetos.push_back(new Escorregador());
 
     objetos.push_back(new Parede());
+    objetos.push_back(new Teto());
+
+//    for (int i = 0; i < (int)objetos.size(); i++) {
+//        for (int j = 0; j < (int)coordenadas.size(); j += 9) {
+//            objetos[i]->escala.x = coordenadas[j];
+//            objetos[i]->escala.y = coordenadas[j + 1];
+//            objetos[i]->escala.z = coordenadas[j + 2];/*
+//            objetos[i]->rotacao.x = coordenadas[j + 3];
+//            objetos[i]->rotacao.y = coordenadas[j + 4];
+//            objetos[i]->rotacao.z = coordenadas[j + 5];
+//            objetos[i]->translacao.x = coordenadas[j + 6];
+//            objetos[i]->translacao.y = coordenadas[j + 7];
+//            objetos[i]->translacao.z = coordenadas[j + 8];*/
+////            objetos[i]->escala.add( Vetor3D(coordenadas[j], coordenadas[j + 1], coordenadas[j + 2]) );
+//            objetos[i]->rotacao.add( Vetor3D(coordenadas[j + 3], coordenadas[j + 4], coordenadas[j + 5]) );
+//            objetos[i]->translacao.add( Vetor3D(coordenadas[j + 6], coordenadas[j + 7], coordenadas[j + 8]) );
+//        }
+//    }
+
+//    for (int i = 0; i < 9; i++) {
+//        cout << coordenadas[i] << endl;
+//    }
 
     // CAMA
     objetos[0]->translacao.add( Vetor3D(1, 0, 5.3) );
@@ -238,6 +282,8 @@ void cenario() {
 
     // PAREDE
     objetos[21]->translacao.add( Vetor3D(3, 0, 0) );
+    // TETO
+    objetos[22]->translacao.add( Vetor3D(3, 2, 0) );
 }
 
 void desenha() {
@@ -389,6 +435,14 @@ void teclado(unsigned char tecla, int mx, int my) {
         break;
     case '9':   // zerar t, r, e && colocar uma função para essa operação
         salvar_cenario();
+        break;
+    case '8':   // zerar t, r, e && colocar uma função para essa operação
+        pegar_cenario();
+        break;
+
+    case '5':   // zerar t, r, e && colocar uma função para essa operação
+        cout << glutGUI::cam->e.x << " " << glutGUI::cam->e.y << " " << glutGUI::cam->e.z << endl;
+        cout << glutGUI::cam->c.x << " " << glutGUI::cam->c.y << " " << glutGUI::cam->c.z << endl;
         break;
 
     default:
