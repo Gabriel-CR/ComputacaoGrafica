@@ -43,7 +43,6 @@ int s = (int)objetos.size() - 1;
 int cam_id = 0;
 
 void deletar_objetos() {
-    cout << "deletando objetos" << endl;
     for (int i = 0; i < (int)objetos.size(); i++) {
         delete objetos[i];
     }
@@ -146,6 +145,9 @@ void cenario() {
     objetos.push_back(new Cadeira());
     objetos.push_back(new Cadeira());
 
+    objetos.push_back(new Geladeira());
+    objetos.push_back(new Fogao());
+
     objetos.push_back(new Parede());
 
     // CAMA
@@ -191,8 +193,15 @@ void cenario() {
     objetos[14]->rotacao.add( Vetor3D(0, 180, 0) );
     objetos[14]->translacao.add( Vetor3D(5.5, 0, -1) );
 
+    // GELADEIRA
+    objetos[15]->rotacao.add( Vetor3D(0, 180, 0) );
+    objetos[15]->translacao.add( Vetor3D(5.5, 0, -1) );
+    // FOGAO
+//    objetos[16]->rotacao.add( Vetor3D(0, 180, 0) );
+//    objetos[16]->translacao.add( Vetor3D(5.5, 0, -1) );
+
     // PAREDE
-    objetos[15]->translacao.add( Vetor3D(3, 0, 0) );
+    objetos[17]->translacao.add( Vetor3D(3, 0, 0) );
 }
 
 void desenha() {
