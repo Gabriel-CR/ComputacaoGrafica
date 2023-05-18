@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -41,12 +42,6 @@ bool desenha_objetos = false;
 bool selecionar = true;
 int s = (int)objetos.size() - 1;
 int cam_id = 0;
-
-void deletar_objetos() {
-    for (int i = 0; i < (int)objetos.size(); i++) {
-        delete objetos[i];
-    }
-}
 
 void zerar_vetores() {
     t = objetos[s]->translacao;
@@ -118,6 +113,31 @@ void trocar_camera() {
     }
 }
 
+void salvar_cenario() {
+    std::ofstream arquivo("../cenario.txt");
+    if (arquivo.is_open()) {
+        // Escreve no arquivo
+        for (int i = 0; i < (int)objetos.size(); i++) {
+            arquivo << objetos[i]->escala.x << endl;
+            arquivo << objetos[i]->escala.y << endl;
+            arquivo << objetos[i]->escala.z << endl;
+            arquivo << objetos[i]->rotacao.x << endl;
+            arquivo << objetos[i]->rotacao.y << endl;
+            arquivo << objetos[i]->rotacao.z << endl;
+            arquivo << objetos[i]->translacao.x << endl;
+            arquivo << objetos[i]->translacao.y << endl;
+            arquivo << objetos[i]->translacao.z << endl;
+        }
+
+        // Fecha o arquivo
+        arquivo.close();
+
+        std::cout << "Dados escritos com sucesso no arquivo." << std::endl;
+    } else {
+        std::cout << "Não foi possível abrir o arquivo." << std::endl;
+    }
+}
+
 // USAR ESSA ESTRATÉGIA PARA DESENHAR O CENARIO
 // FATORAR ESSA ESTRATÉGIA PARA CADA CÔMODO DA CASA
 // AO SALVAR AS MODIFICAÇÕES DO CENÁRIO, USAR OS VALORES DOS VETORES PARA COLOCAR NO ARQUIVO
@@ -147,6 +167,11 @@ void cenario() {
 
     objetos.push_back(new Geladeira());
     objetos.push_back(new Fogao());
+    objetos.push_back(new GuardaRoupa());
+    objetos.push_back(new Microondas());
+
+    objetos.push_back(new Piscina());
+    objetos.push_back(new Escorregador());
 
     objetos.push_back(new Parede());
 
@@ -194,14 +219,25 @@ void cenario() {
     objetos[14]->translacao.add( Vetor3D(5.5, 0, -1) );
 
     // GELADEIRA
-    objetos[15]->rotacao.add( Vetor3D(0, 180, 0) );
-    objetos[15]->translacao.add( Vetor3D(5.5, 0, -1) );
+    objetos[15]->translacao.add( Vetor3D(0, 0, -5.8) );
     // FOGAO
-//    objetos[16]->rotacao.add( Vetor3D(0, 180, 0) );
-//    objetos[16]->translacao.add( Vetor3D(5.5, 0, -1) );
+    objetos[16]->translacao.add( Vetor3D(2, 0, -5.5) );
+    // ARMARIO
+    objetos[17]->escala.add( Vetor3D(-0.06, -0.5, 0) );
+    objetos[17]->translacao.add( Vetor3D(5, 0, -6) );
+    // MICROONDAS
+    objetos[18]->translacao.add( Vetor3D(5, 1.3, -6) );
+
+    // PISCINA
+    objetos[19]->escala.add( Vetor3D(0.5, 0.5, 0.5) );
+    objetos[19]->rotacao.add( Vetor3D(0, 90, 0) );
+    objetos[19]->translacao.add( Vetor3D(-4.7, 0.01, 2) );
+    // ESCORREGADOR
+    objetos[20]->rotacao.add( Vetor3D(0, 45, 0) );
+    objetos[20]->translacao.add( Vetor3D(-6, 0, -5) );
 
     // PAREDE
-    objetos[17]->translacao.add( Vetor3D(3, 0, 0) );
+    objetos[21]->translacao.add( Vetor3D(3, 0, 0) );
 }
 
 void desenha() {
@@ -243,7 +279,6 @@ void teclado(unsigned char tecla, int mx, int my) {
 
     switch (tecla) {
     case 27:
-        deletar_objetos();
         exit(0);
         break;
     case 't':
@@ -351,6 +386,9 @@ void teclado(unsigned char tecla, int mx, int my) {
     case '/':   // zerar t, r, e && colocar uma função para essa operação
         selecionar = !selecionar;
         objetos[s]->selecionado = false;
+        break;
+    case '9':   // zerar t, r, e && colocar uma função para essa operação
+        salvar_cenario();
         break;
 
     default:
