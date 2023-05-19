@@ -97,7 +97,7 @@ void trocar_camera() {
         glutGUI::cam = new CameraDistante(-4.59024,38.9058,4.10113,  0,-0.223607,0,  0,1,0);
         break;
     case 2:
-        glutGUI::cam = new CameraDistante(-18.6038,4.64228,-10.1431,  -3,0,3,  0,1,0);
+        glutGUI::cam = new CameraDistante(-18.6038,4.64228,-10.1431,  0,0,0,  0,1,0);
         break;
     case 3:
         glutGUI::cam = new CameraDistante(-20,4,0,  0,0,0,  0,1,0);
@@ -166,6 +166,7 @@ void pegar_cenario() {
 //  vetores de rotacao, translacao, escala
 void cenario() {
     cout << "desenhando..." << endl;
+    pegar_cenario();
     objetos.clear();
 
     objetos.push_back(new Cama());
@@ -202,16 +203,16 @@ void cenario() {
 //        for (int j = 0; j < (int)coordenadas.size(); j += 9) {
 //            objetos[i]->escala.x = coordenadas[j];
 //            objetos[i]->escala.y = coordenadas[j + 1];
-//            objetos[i]->escala.z = coordenadas[j + 2];/*
+//            objetos[i]->escala.z = coordenadas[j + 2];
 //            objetos[i]->rotacao.x = coordenadas[j + 3];
 //            objetos[i]->rotacao.y = coordenadas[j + 4];
 //            objetos[i]->rotacao.z = coordenadas[j + 5];
-//            objetos[i]->translacao.x = coordenadas[j + 6];
-//            objetos[i]->translacao.y = coordenadas[j + 7];
-//            objetos[i]->translacao.z = coordenadas[j + 8];*/
-////            objetos[i]->escala.add( Vetor3D(coordenadas[j], coordenadas[j + 1], coordenadas[j + 2]) );
-//            objetos[i]->rotacao.add( Vetor3D(coordenadas[j + 3], coordenadas[j + 4], coordenadas[j + 5]) );
-//            objetos[i]->translacao.add( Vetor3D(coordenadas[j + 6], coordenadas[j + 7], coordenadas[j + 8]) );
+//            objetos[i]->translacao.x += coordenadas[j + 6];
+//            objetos[i]->translacao.y += coordenadas[j + 7];
+//            objetos[i]->translacao.z += coordenadas[j + 8];
+////            objetos[i]->escala.add( Vetor3D((coordenadas[j] - 1), (coordenadas[j + 1] - 1), (coordenadas[j + 2] - 1)) );
+////            objetos[i]->rotacao.add( Vetor3D(coordenadas[j + 3], coordenadas[j + 4], coordenadas[j + 5]) );
+////            objetos[i]->translacao.add( Vetor3D(coordenadas[j + 6], coordenadas[j + 7], coordenadas[j + 8]) );
 //        }
 //    }
 
@@ -286,6 +287,8 @@ void cenario() {
     objetos[22]->translacao.add( Vetor3D(3, 2, 0) );
 }
 
+float rotate;
+
 void desenha() {
     GUI::displayInit();
     GUI::setLight(0, -5,5,3, true, false);
@@ -302,6 +305,10 @@ void desenha() {
             }
             objetos[i]->desenha();
         }
+    }
+
+    if (cam_id == 2) {
+        glutGUI::cam->rotatey(0, 1);
     }
 
 //    Cama c = Cama();
@@ -423,26 +430,21 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'L':
         objetos[s]->desenha_local = !objetos[s]->desenha_local;
         break;
-    case '-':   // zerar t, r, e && colocar uma função para essa operação
+    case '-':
         if (objetos.size() > 0) { selecionar_anterior(); }
         break;
-    case '+':   // zerar t, r, e && colocar uma função para essa operação
+    case '+':
         if (objetos.size() > 0) { selecionar_proximo(); }
         break;
-    case '/':   // zerar t, r, e && colocar uma função para essa operação
+    case '/':
         selecionar = !selecionar;
         objetos[s]->selecionado = false;
         break;
-    case '9':   // zerar t, r, e && colocar uma função para essa operação
+    case '9':
         salvar_cenario();
         break;
-    case '8':   // zerar t, r, e && colocar uma função para essa operação
+    case '8':
         pegar_cenario();
-        break;
-
-    case '5':   // zerar t, r, e && colocar uma função para essa operação
-        cout << glutGUI::cam->e.x << " " << glutGUI::cam->e.y << " " << glutGUI::cam->e.z << endl;
-        cout << glutGUI::cam->c.x << " " << glutGUI::cam->c.y << " " << glutGUI::cam->c.z << endl;
         break;
 
     default:
