@@ -141,7 +141,7 @@ void salvar_cenario() {
 
 void pegar_cenario() {
     // Abre o arquivo no modo de leitura
-        std::ifstream arquivo("../cenario.txt");
+        ifstream arquivo("../cenario.txt");
 
         if (arquivo.is_open()) {
             std::string linha;
@@ -207,12 +207,9 @@ void cenario() {
 //            objetos[i]->rotacao.x = coordenadas[j + 3];
 //            objetos[i]->rotacao.y = coordenadas[j + 4];
 //            objetos[i]->rotacao.z = coordenadas[j + 5];
-//            objetos[i]->translacao.x += coordenadas[j + 6];
-//            objetos[i]->translacao.y += coordenadas[j + 7];
-//            objetos[i]->translacao.z += coordenadas[j + 8];
-////            objetos[i]->escala.add( Vetor3D((coordenadas[j] - 1), (coordenadas[j + 1] - 1), (coordenadas[j + 2] - 1)) );
-////            objetos[i]->rotacao.add( Vetor3D(coordenadas[j + 3], coordenadas[j + 4], coordenadas[j + 5]) );
-////            objetos[i]->translacao.add( Vetor3D(coordenadas[j + 6], coordenadas[j + 7], coordenadas[j + 8]) );
+//            objetos[i]->translacao.x = coordenadas[j + 6];
+//            objetos[i]->translacao.y = coordenadas[j + 7];
+//            objetos[i]->translacao.z = coordenadas[j + 8];
 //        }
 //    }
 
@@ -220,7 +217,22 @@ void cenario() {
 //        cout << coordenadas[i] << endl;
 //    }
 
-    // CAMA
+    // cama
+    glPushMatrix();
+        glTranslatef(1, 0, 5.3);
+        glRotatef(-90, 0, 1, 0);
+        objetos[0]->desenha();
+    glPopMatrix();
+    // mesa pc
+    glPushMatrix();
+        glTranslatef(1, 0, 2.3);
+        objetos[1]->desenha();
+    glPopMatrix();
+    glPushMatrix();
+        glTranslatef(1, 0, 2.3);
+        objetos[0]->desenha();
+    glPopMatrix();
+    /*// CAMA
     objetos[0]->translacao.add( Vetor3D(1, 0, 5.3) );
     objetos[0]->rotacao.add( Vetor3D(0, -90, 0) );
     // MESA PC
@@ -284,7 +296,7 @@ void cenario() {
     // PAREDE
     objetos[21]->translacao.add( Vetor3D(3, 0, 0) );
     // TETO
-    objetos[22]->translacao.add( Vetor3D(3, 2, 0) );
+    objetos[22]->translacao.add( Vetor3D(3, 2, 0) );*/
 }
 
 float rotate;
