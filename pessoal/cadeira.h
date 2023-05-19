@@ -7,7 +7,7 @@
 class Cadeira : public Objeto {
 public:
     Cadeira();
-    Cadeira(float ex, float ey, float ez, float rx, float ry, float rz, float tx, float ty, float tz);
+    Cadeira(Vetor3D t, Vetor3D r, Vetor3D e);
     ~Cadeira();
     void desenha();
 };

@@ -7,6 +7,7 @@
 class Parede : public Objeto {
 public:
     Parede();
+    Parede(Vetor3D t, Vetor3D r, Vetor3D e);
     ~Parede();
     void desenha();
 };

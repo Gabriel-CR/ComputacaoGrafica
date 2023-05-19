@@ -3,11 +3,8 @@
 Cadeira::Cadeira() {
 }
 
-//Cadeira::Cadeira(float ex, float ey, float ez, float rx, float ry, float rz, float tx, float ty, float tz) {
-//    this->setEscala(Vetor3D(ex, ey, ez));
-//    this->setRotacao(Vetor3D(rx, ry, rz));
-//    this->setTranslacao(Vetor3D(tx, ty, tz));
-//}
+Cadeira::Cadeira(Vetor3D t, Vetor3D r, Vetor3D e) : Objeto(t, r, e) {
+}
 
 Cadeira::~Cadeira() {
 }

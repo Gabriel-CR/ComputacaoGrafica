@@ -4,6 +4,10 @@ Microondas::Microondas() {
     microondas = new Model3DS("../3ds/microondas.3ds");
 }
 
+Microondas::Microondas(Vetor3D t, Vetor3D r, Vetor3D e) : Objeto(t, r, e) {
+    microondas = new Model3DS("../3ds/microondas.3ds");
+}
+
 Microondas::~Microondas() {
     delete microondas;
 }

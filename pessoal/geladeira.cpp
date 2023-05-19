@@ -4,6 +4,10 @@ Geladeira::Geladeira() {
     geladeira = new Model3DS("../3ds/geladeira.3DS");
 }
 
+Geladeira::Geladeira(Vetor3D t, Vetor3D r, Vetor3D e) : Objeto(t, r, e) {
+    geladeira = new Model3DS("../3ds/geladeira.3DS");
+}
+
 Geladeira::~Geladeira() {
     delete geladeira;
 }

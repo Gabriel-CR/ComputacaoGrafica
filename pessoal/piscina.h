@@ -8,6 +8,7 @@
 class Piscina : public Objeto {
 public:
     Piscina();
+    Piscina(Vetor3D t, Vetor3D r, Vetor3D e);
     ~Piscina();
     void desenha();
 };

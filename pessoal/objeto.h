@@ -14,14 +14,9 @@ public:
 
 public:
     Objeto();
+    Objeto(Vetor3D t, Vetor3D r, Vetor3D e);
     ~Objeto();
     virtual void desenha();
-    void setTranslacao(Vetor3D vetor);
-    void setRotacao(Vetor3D vetor);
-    void setEscala(Vetor3D vetor);
-
-    void set_selecionado();
-    void set_desenha_local();
 };
 
 #endif // OBJETO_H

@@ -6,6 +6,7 @@
 class Shape : public Objeto {
 public:
     Shape();
+    Shape(Vetor3D t, Vetor3D r, Vetor3D e);
     ~Shape();
     void desenha();
 };

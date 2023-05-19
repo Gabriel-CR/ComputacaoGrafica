@@ -3,6 +3,9 @@
 MesaPc::MesaPc() {
 }
 
+MesaPc::MesaPc(Vetor3D t, Vetor3D r, Vetor3D e) : Objeto(t, r, e) {
+}
+
 void MesaPc::desenha() {
     Cubo c = Cubo();
 

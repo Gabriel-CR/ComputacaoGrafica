@@ -7,6 +7,7 @@
 class Teto : public Objeto {
 public:
     Teto();
+    Teto(Vetor3D t, Vetor3D r, Vetor3D e);
     ~Teto();
     void desenha();
 };

@@ -1,4 +1,4 @@
-#ifndef MOUSE_H
+ifndef MOUSE_H
 #define MOUSE_H
 
 #include <objeto.h>

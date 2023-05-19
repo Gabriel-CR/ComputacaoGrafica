@@ -8,6 +8,7 @@ class Documento : public Objeto {
     Model3DS* documento;
 public:
     Documento();
+    Documento(Vetor3D t, Vetor3D r, Vetor3D e);
     ~Documento();
     void desenha();
 };

@@ -4,6 +4,10 @@ Chuveiro::Chuveiro() {
     chuveiro = new Model3DS("../3ds/chuveiro.3DS");
 }
 
+Chuveiro::Chuveiro(Vetor3D t, Vetor3D r, Vetor3D e) : Objeto(t, r, e) {
+    chuveiro = new Model3DS("../3ds/chuveiro.3DS");
+}
+
 Chuveiro::~Chuveiro() {
     delete chuveiro;
 }

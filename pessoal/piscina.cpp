@@ -3,6 +3,9 @@
 Piscina::Piscina() {
 }
 
+Piscina::Piscina(Vetor3D t, Vetor3D r, Vetor3D e) : Objeto(t, r, e) {
+}
+
 Piscina::~Piscina() {
 }
 

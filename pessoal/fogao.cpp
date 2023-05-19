@@ -4,6 +4,10 @@ Fogao::Fogao() {
     fogao = new Model3DS("../3ds/fogao.3ds");
 }
 
+Fogao::Fogao(Vetor3D t, Vetor3D r, Vetor3D e) : Objeto(t, r, e) {
+    fogao = new Model3DS("../3ds/fogao.3ds");
+}
+
 Fogao::~Fogao() {
     delete fogao;
 }

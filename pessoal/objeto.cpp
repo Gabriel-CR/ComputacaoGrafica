@@ -3,6 +3,12 @@
 Objeto::Objeto() {
 }
 
+Objeto::Objeto(Vetor3D t, Vetor3D r, Vetor3D e) {
+    this->translacao.add(t);
+    this->rotacao.add(r);
+    this->escala.add(e);
+}
+
 Objeto::~Objeto() {
 }
 
@@ -14,12 +20,4 @@ void Objeto::desenha() {
     glRotatef(rotacao.x, 1, 0, 0);  // /
     if (this->desenha_local) { GUI::drawOrigin(1); }
     glScalef(escala.x, escala.y, escala.z); //transformacao (matriz) mais a direita (mais local)
-}
-
-void Objeto::set_selecionado() {
-    this->selecionado = !this->selecionado;
-}
-
-void Objeto::set_desenha_local() {
-    this->desenha_local = !this->desenha_local;
 }

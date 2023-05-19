@@ -8,6 +8,7 @@
 class GuardaRoupa : public Objeto {
 public:
     GuardaRoupa();
+    GuardaRoupa(Vetor3D t, Vetor3D r, Vetor3D e);
     ~GuardaRoupa();
     void desenha();
 };

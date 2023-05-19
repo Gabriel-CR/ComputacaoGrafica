@@ -21,10 +21,7 @@ SOURCES += main.cpp \
     gui_glut/gui.cpp \
     pessoal/cadeira.cpp \
     pessoal/cama.cpp \
-    pessoal/carro.cpp \
     pessoal/chuveiro.cpp \
-    pessoal/circle.cpp \
-    pessoal/controller.cpp \
     pessoal/cubo.cpp \
     pessoal/documento.cpp \
     pessoal/escorregador.cpp \
@@ -34,7 +31,6 @@ SOURCES += main.cpp \
     pessoal/mesa.cpp \
     pessoal/mesapc.cpp \
     pessoal/microondas.cpp \
-    pessoal/mouse.cpp \
     pessoal/objeto.cpp \
     pessoal/parede.cpp \
     pessoal/pc.cpp \
@@ -57,10 +53,7 @@ HEADERS += \
     gui_glut/gui.h \
     pessoal/cadeira.h \
     pessoal/cama.h \
-    pessoal/carro.h \
     pessoal/chuveiro.h \
-    pessoal/circle.h \
-    pessoal/controller.h \
     pessoal/cubo.h \
     pessoal/documento.h \
     pessoal/escorregador.h \
@@ -70,7 +63,6 @@ HEADERS += \
     pessoal/mesa.h \
     pessoal/mesapc.h \
     pessoal/microondas.h \
-    pessoal/mouse.h \
     pessoal/objeto.h \
     pessoal/parede.h \
     pessoal/pc.h \

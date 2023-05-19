@@ -7,6 +7,7 @@
 class MesaPc : public Objeto {
 public:
     MesaPc();
+    MesaPc(Vetor3D t, Vetor3D r, Vetor3D e);
     void desenha();
 };
 

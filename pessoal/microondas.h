@@ -8,6 +8,7 @@ class Microondas : public Objeto {
     Model3DS* microondas;
 public:
     Microondas();
+    Microondas(Vetor3D t, Vetor3D r, Vetor3D e);
     ~Microondas();
     void desenha();
 };

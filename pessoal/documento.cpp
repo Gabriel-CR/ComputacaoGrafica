@@ -4,6 +4,10 @@ Documento::Documento() {
     documento = new Model3DS("../3ds/documento.3DS");
 }
 
+Documento::Documento(Vetor3D t, Vetor3D r, Vetor3D e) : Objeto(t, r, e) {
+    documento = new Model3DS("../3ds/documento.3DS");
+}
+
 Documento::~Documento() {
     delete documento;
 }

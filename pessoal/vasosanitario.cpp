@@ -4,6 +4,10 @@ VasoSanitario::VasoSanitario() {
     vaso_sanitario = new Model3DS("../3ds/vaso.3DS");
 }
 
+VasoSanitario::VasoSanitario(Vetor3D t, Vetor3D r, Vetor3D e) : Objeto(t, r, e) {
+    vaso_sanitario = new Model3DS("../3ds/vaso.3DS");
+}
+
 VasoSanitario::~VasoSanitario() {
     delete vaso_sanitario;
 }

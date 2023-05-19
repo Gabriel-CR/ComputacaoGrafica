@@ -3,6 +3,9 @@
 Cama::Cama() {
 }
 
+Cama::Cama(Vetor3D t, Vetor3D r, Vetor3D e) : Objeto(t, r, e) {
+}
+
 Cama::~Cama() {
 }
 

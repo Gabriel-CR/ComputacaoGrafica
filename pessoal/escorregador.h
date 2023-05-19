@@ -7,6 +7,7 @@
 class Escorregador : public Objeto {
 public:
     Escorregador();
+    Escorregador(Vetor3D t, Vetor3D r, Vetor3D e);
     ~Escorregador();
     void desenha();
 };

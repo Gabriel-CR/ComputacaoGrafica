@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <sstream>
 #include <fstream>
 
 using namespace std;
@@ -9,7 +10,6 @@ using namespace std;
 #include <gui.h>
 #include <objeto.h>
 
-#include <carro.h>
 #include <cubo.h>
 #include <sofa.h>
 #include <televisao.h>
@@ -21,7 +21,6 @@ using namespace std;
 #include <geladeira.h>
 #include <microondas.h>
 #include <pc.h>
-#include <mouse.h>
 #include <documento.h>
 #include <mesapc.h>
 #include <piscina.h>
@@ -41,6 +40,7 @@ vector<float> coordenadas;
 
 bool desenha_objetos = false;
 bool selecionar = true;
+bool draw_cenario = false;
 int s = (int)objetos.size() - 1;
 int cam_id = 0;
 
@@ -114,192 +114,175 @@ void trocar_camera() {
     }
 }
 
-void salvar_cenario() {
-    std::ofstream arquivo("../cenario.txt");
-    if (arquivo.is_open()) {
-        // Escreve no arquivo
-        for (int i = 0; i < (int)objetos.size(); i++) {
-            arquivo << objetos[i]->escala.x << endl;
-            arquivo << objetos[i]->escala.y << endl;
-            arquivo << objetos[i]->escala.z << endl;
-            arquivo << objetos[i]->rotacao.x << endl;
-            arquivo << objetos[i]->rotacao.y << endl;
-            arquivo << objetos[i]->rotacao.z << endl;
-            arquivo << objetos[i]->translacao.x << endl;
-            arquivo << objetos[i]->translacao.y << endl;
-            arquivo << objetos[i]->translacao.z << endl;
-        }
-
-        // Fecha o arquivo
-        arquivo.close();
-
-        std::cout << "Dados escritos com sucesso no arquivo." << std::endl;
-    } else {
-        std::cout << "Não foi possível abrir o arquivo." << std::endl;
-    }
-}
-
-void pegar_cenario() {
-    // Abre o arquivo no modo de leitura
-        ifstream arquivo("../cenario.txt");
-
-        if (arquivo.is_open()) {
-            std::string linha;
-
-            // Lê o arquivo linha por linha
-            while (std::getline(arquivo, linha)) {
-                float numero = std::stof(linha);
-                coordenadas.push_back(numero);
-            }
-
-            // Fecha o arquivo
-            arquivo.close();
-            cout << "coordenadas salvas com sucesso" << endl;
-        } else {
-            std::cout << "Não foi possível abrir o arquivo." << std::endl;
-        }
-}
-
-// USAR ESSA ESTRATÉGIA PARA DESENHAR O CENARIO
-// FATORAR ESSA ESTRATÉGIA PARA CADA CÔMODO DA CASA
-// AO SALVAR AS MODIFICAÇÕES DO CENÁRIO, USAR OS VALORES DOS VETORES PARA COLOCAR NO ARQUIVO
-//  vetores de rotacao, translacao, escala
 void cenario() {
     cout << "desenhando..." << endl;
-    pegar_cenario();
     objetos.clear();
 
-    objetos.push_back(new Cama());
-    objetos.push_back(new MesaPc());
-    objetos.push_back(new Pc());
-    objetos.push_back(new Documento());
-    objetos.push_back(new Cadeira());
-    objetos.push_back(new GuardaRoupa());
+    objetos.push_back(new Cama( Vetor3D(1, 0, 5.3), Vetor3D(0, -90, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new MesaPc( Vetor3D(1, 0, 2.3), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new Pc( Vetor3D(0.2, 1.1, 2.3), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new Documento( Vetor3D(1.7, 1.1, 2.3), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new Cadeira( Vetor3D(1, 0, 2.7), Vetor3D(0, 180, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new GuardaRoupa( Vetor3D(4, 0, 4), Vetor3D(0, -90, 0), Vetor3D(0, 0, 0) ));
 
-    objetos.push_back(new Sofa());
-    objetos.push_back(new Sofa());
-    objetos.push_back(new Televisao());
+    objetos.push_back(new Sofa( Vetor3D(3, 0, -1), Vetor3D(0, -90, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new Sofa( Vetor3D(1, 0, 0.5), Vetor3D(0, 180, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new Televisao( Vetor3D(1, 0, -3), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
 
-    objetos.push_back(new Chuveiro());
-    objetos.push_back(new Pia());
-    objetos.push_back(new VasoSanitario());
+    objetos.push_back(new Chuveiro( Vetor3D(6, 0, 6.5), Vetor3D(0, 180, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new Pia( Vetor3D(7.1, 1, 3), Vetor3D(0, 180, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new VasoSanitario( Vetor3D(5, 0, 3), Vetor3D(0, 90, 0), Vetor3D(0, 0, 0) ));
 
-    objetos.push_back(new Mesa());
-    objetos.push_back(new Cadeira());
-    objetos.push_back(new Cadeira());
+    objetos.push_back(new Mesa( Vetor3D(5.5, 0, -2), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new Cadeira( Vetor3D(5.5, 0, -3), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new Cadeira( Vetor3D(5.5, 0, -1), Vetor3D(0, 180, 0), Vetor3D(0, 0, 0) ));
 
-    objetos.push_back(new Geladeira());
-    objetos.push_back(new Fogao());
-    objetos.push_back(new GuardaRoupa());
-    objetos.push_back(new Microondas());
+    objetos.push_back(new Geladeira( Vetor3D(0, 0, -5.8), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new Fogao( Vetor3D(2, 0, -5.5), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new GuardaRoupa( Vetor3D(5, 0, -6), Vetor3D(0, 0, 0), Vetor3D(-0.06, -0.5, 0) ));
+    objetos.push_back(new Microondas( Vetor3D(5, 1.3, -6), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
 
-    objetos.push_back(new Piscina());
-    objetos.push_back(new Escorregador());
+    objetos.push_back(new Piscina( Vetor3D(-4.7, 0.01, 2), Vetor3D(0, 90, 0), Vetor3D(0.5, 0.5, 0.5) ));
+    objetos.push_back(new Escorregador( Vetor3D(-6, 0, -5), Vetor3D(0, 45, 0), Vetor3D(0, 0, 0) ));
 
-    objetos.push_back(new Parede());
-    objetos.push_back(new Teto());
+    objetos.push_back(new Parede( Vetor3D(3, 0, 0), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
+    objetos.push_back(new Teto( Vetor3D(3, 2, 0), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
 
-//    for (int i = 0; i < (int)objetos.size(); i++) {
-//        for (int j = 0; j < (int)coordenadas.size(); j += 9) {
-//            objetos[i]->escala.x = coordenadas[j];
-//            objetos[i]->escala.y = coordenadas[j + 1];
-//            objetos[i]->escala.z = coordenadas[j + 2];
-//            objetos[i]->rotacao.x = coordenadas[j + 3];
-//            objetos[i]->rotacao.y = coordenadas[j + 4];
-//            objetos[i]->rotacao.z = coordenadas[j + 5];
-//            objetos[i]->translacao.x = coordenadas[j + 6];
-//            objetos[i]->translacao.y = coordenadas[j + 7];
-//            objetos[i]->translacao.z = coordenadas[j + 8];
-//        }
-//    }
+      // cama
+//    glPushMatrix();
+//        glTranslatef(1, 0, 5.3);
+//        glRotatef(-90, 0, 1, 0);
+//        objetos[0]->desenha();
+//    glPopMatrix();
+//    // mesa pc
+//    glPushMatrix();
+//        glTranslatef(1, 0, 2.3);
+//        objetos[1]->desenha();
+//    glPopMatrix();
+//    // pc
+//    glPushMatrix();
+//        glTranslatef(0.2, 1.1, 2.3);
+//        objetos[2]->desenha();
+//    glPopMatrix();
+//    // documentos
+//    glPushMatrix();
+//        glTranslatef(1.7, 1.1, 2.3);
+//        objetos[3]->desenha();
+//    glPopMatrix();
+//    // cadeira
+//    glPushMatrix();
+//        glTranslatef(1, 0, 2.7);
+//        glRotatef(180, 0, 1, 0);
+//        objetos[4]->desenha();
+//    glPopMatrix();
+//    // guarda roupa
+//    glPushMatrix();
+//        glTranslatef(4, 0, 4);
+//        glRotatef(-90, 0, 1, 0);
+//        objetos[5]->desenha();
+//    glPopMatrix();
 
-//    for (int i = 0; i < 9; i++) {
-//        cout << coordenadas[i] << endl;
-//    }
+//    // sofa 1
+//    glPushMatrix();
+//        glTranslatef(3, 0, -1);
+//        glRotatef(-90, 0, 1, 0);
+//        objetos[6]->desenha();
+//    glPopMatrix();
+//    // sofa 2
+//    glPushMatrix();
+//        glTranslatef(1, 0, 0.5);
+//        glRotatef(180, 0, 1, 0);
+//        objetos[7]->desenha();
+//    glPopMatrix();
+//    // televisao
+//    glPushMatrix();
+//        glTranslatef(1, 0, -3);
+//        objetos[8]->desenha();
+//    glPopMatrix();
 
-    // cama
-    glPushMatrix();
-        glTranslatef(1, 0, 5.3);
-        glRotatef(-90, 0, 1, 0);
-        objetos[0]->desenha();
-    glPopMatrix();
-    // mesa pc
-    glPushMatrix();
-        glTranslatef(1, 0, 2.3);
-        objetos[1]->desenha();
-    glPopMatrix();
-    glPushMatrix();
-        glTranslatef(1, 0, 2.3);
-        objetos[0]->desenha();
-    glPopMatrix();
-    /*// CAMA
-    objetos[0]->translacao.add( Vetor3D(1, 0, 5.3) );
-    objetos[0]->rotacao.add( Vetor3D(0, -90, 0) );
-    // MESA PC
-    objetos[1]->translacao.add( Vetor3D(1, 0, 2.3) );
-    // PC
-    objetos[2]->translacao.add( Vetor3D(0.2, 1.1, 2.3) );
-    // DOCUMENTOS
-    objetos[3]->translacao.add( Vetor3D(1.7, 1.1, 2.3) );
-    // CADEIRA
-    objetos[4]->rotacao.add( Vetor3D(0, 180, 0) );
-    objetos[4]->translacao.add( Vetor3D(1, 0, 2.7) );
-    // GUARDA ROUPA
-    objetos[5]->rotacao.add( Vetor3D(0, -90, 0) );
-    objetos[5]->translacao.add( Vetor3D(4, 0, 4) );
+//    // chuveiro
+//    glPushMatrix();
+//        glTranslatef(6, 0, 6.5);
+//        glRotatef(180, 0, 1, 0);
+//        objetos[9]->desenha();
+//    glPopMatrix();
+//    // pia
+//    glPushMatrix();
+//        glTranslatef(7.1, 1, 3);
+//        glRotatef(180, 0, 1, 0);
+//        objetos[10]->desenha();
+//    glPopMatrix();
+//    // vaso sanitario
+//    glPushMatrix();
+//        glTranslatef(5, 0, 3);
+//        glRotatef(90, 0, 1, 0);
+//        objetos[11]->desenha();
+//    glPopMatrix();
 
-    // SOFA 1
-    objetos[6]->rotacao.add( Vetor3D(0, -90, 0) );
-    objetos[6]->translacao.add( Vetor3D(3, 0, -1) );
-    // SOFA 2
-    objetos[7]->rotacao.add( Vetor3D(0, 180, 0) );
-    objetos[7]->translacao.add( Vetor3D(1, 0, 0.5) );
-    // TELEVISAO
-    objetos[8]->translacao.add( Vetor3D(1, 0, -3) );
+//    // mesa
+//    glPushMatrix();
+//        glTranslatef(5.5, 0, -2);
+//        objetos[12]->desenha();
+//    glPopMatrix();
+//    // cadeira 1
+//    glPushMatrix();
+//        glTranslatef(5.5, 0, -3);
+//        objetos[13]->desenha();
+//    glPopMatrix();
+//    // cadeira 2
+//    glPushMatrix();
+//        glTranslatef(5.5, 0, -1);
+//        glRotatef(180, 0, 1, 0);
+//        objetos[14]->desenha();
+//    glPopMatrix();
 
-    // CHUVEIRO
-    objetos[9]->rotacao.add( Vetor3D(0, 180, 0) );
-    objetos[9]->translacao.add( Vetor3D(6, 0, 6.5) );
-    // PIA
-    objetos[10]->rotacao.add( Vetor3D(0, 180, 0) );
-    objetos[10]->translacao.add( Vetor3D(7.1, 1, 3) );
-    // VASO SANITARIO
-    objetos[11]->rotacao.add( Vetor3D(0, 90, 0) );
-    objetos[11]->translacao.add( Vetor3D(5, 0, 3) );
+//    // geladeira
+//    glPushMatrix();
+//        glTranslatef(0, 0, -5.8);
+//        objetos[15]->desenha();
+//    glPopMatrix();
+//    // fogao
+//    glPushMatrix();
+//        glTranslatef(2, 0, -5.5);
+//        objetos[16]->desenha();
+//    glPopMatrix();
+//    // armario
+//    glPushMatrix();
+//        glTranslatef(5, 0, -6);
+//        glScalef(0.94, 0.5, 1);
+//        objetos[17]->desenha();
+//    glPopMatrix();
+//    // microondas
+//    glPushMatrix();
+//        glTranslatef(5, 1.3, -6);
+//        objetos[18]->desenha();
+//    glPopMatrix();
 
-    // MESA
-    objetos[12]->translacao.add( Vetor3D(5.5, 0, -2) );
-    // CADEIRA 1
-    objetos[13]->translacao.add( Vetor3D(5.5, 0, -3) );
-    // CADEIRA 2
-    objetos[14]->rotacao.add( Vetor3D(0, 180, 0) );
-    objetos[14]->translacao.add( Vetor3D(5.5, 0, -1) );
+//    // piscina
+//    glPushMatrix();
+//        glTranslatef(-4.7, 0.01, 2);
+//        glRotatef(90, 0, 1, 0);
+//        glScalef(1.5, 1.5, 1.5);
+//        objetos[19]->desenha();
+//    glPopMatrix();
+//    // escorregador
+//    glPushMatrix();
+//        glTranslatef(-6, 0, -5);
+//        glRotatef(45, 0, 1, 0);
+//        objetos[20]->desenha();
+//    glPopMatrix();
 
-    // GELADEIRA
-    objetos[15]->translacao.add( Vetor3D(0, 0, -5.8) );
-    // FOGAO
-    objetos[16]->translacao.add( Vetor3D(2, 0, -5.5) );
-    // ARMARIO
-    objetos[17]->escala.add( Vetor3D(-0.06, -0.5, 0) );
-    objetos[17]->translacao.add( Vetor3D(5, 0, -6) );
-    // MICROONDAS
-    objetos[18]->translacao.add( Vetor3D(5, 1.3, -6) );
-
-    // PISCINA
-    objetos[19]->escala.add( Vetor3D(0.5, 0.5, 0.5) );
-    objetos[19]->rotacao.add( Vetor3D(0, 90, 0) );
-    objetos[19]->translacao.add( Vetor3D(-4.7, 0.01, 2) );
-    // ESCORREGADOR
-    objetos[20]->rotacao.add( Vetor3D(0, 45, 0) );
-    objetos[20]->translacao.add( Vetor3D(-6, 0, -5) );
-
-    // PAREDE
-    objetos[21]->translacao.add( Vetor3D(3, 0, 0) );
-    // TETO
-    objetos[22]->translacao.add( Vetor3D(3, 2, 0) );*/
+//    // parede
+//    glPushMatrix();
+//        glTranslatef(3, 0, 0);
+//        objetos[21]->desenha();
+//    glPopMatrix();
+//    // teto
+//    glPushMatrix();
+//        glTranslatef(3, 2, 0);
+//        objetos[22]->desenha();
+//    glPopMatrix();
 }
-
-float rotate;
 
 void desenha() {
     GUI::displayInit();
@@ -322,9 +305,6 @@ void desenha() {
     if (cam_id == 2) {
         glutGUI::cam->rotatey(0, 1);
     }
-
-//    Cama c = Cama();
-//    c.desenha();
 
     t.x += glutGUI::dtx;
     t.y += glutGUI::dty;
@@ -363,11 +343,8 @@ void teclado(unsigned char tecla, int mx, int my) {
     case 'D':   // remove todos os elementos do vetor
         objetos.clear();
         break;
-    case 'b':
-        if (desenha_objetos) { objetos.push_back(new Cama()); }
-        break;
     case 'c':
-        if (desenha_objetos) { objetos.push_back(new Carro()); }
+        if (desenha_objetos) { objetos.push_back(new Cama()); }
         break;
     case 'C':
         if (desenha_objetos) { objetos.push_back(new Cadeira()); }
@@ -395,9 +372,6 @@ void teclado(unsigned char tecla, int mx, int my) {
         break;
     case 'p':
         if (desenha_objetos) { objetos.push_back(new Pc()); }
-        break;
-    case 'r':
-        if (desenha_objetos) { objetos.push_back(new Mouse()); }
         break;
     case 'P':
         if (desenha_objetos) { objetos.push_back(new Documento()); }
@@ -428,7 +402,9 @@ void teclado(unsigned char tecla, int mx, int my) {
         break;
 
     case 'n':
-        if (desenha_objetos) { cenario(); }
+        if (desenha_objetos) {
+            cenario();
+        }
         break;
     case 'Q':
         trocar_camera();
@@ -451,12 +427,6 @@ void teclado(unsigned char tecla, int mx, int my) {
     case '/':
         selecionar = !selecionar;
         objetos[s]->selecionado = false;
-        break;
-    case '9':
-        salvar_cenario();
-        break;
-    case '8':
-        pegar_cenario();
         break;
 
     default:

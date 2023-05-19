@@ -7,6 +7,7 @@
 class Sofa : public Objeto {
 public:
     Sofa();
+    Sofa(Vetor3D t, Vetor3D r, Vetor3D e);
     ~Sofa();
     void desenha();
 };

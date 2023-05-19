@@ -7,6 +7,7 @@
 class Televisao : public Objeto {
 public:
     Televisao();
+    Televisao(Vetor3D t, Vetor3D r, Vetor3D e);
     ~Televisao();
     void desenha();
 };

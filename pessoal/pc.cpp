@@ -4,6 +4,10 @@ Pc::Pc() {
     pc = new Model3DS("../3ds/pc.3DS");
 }
 
+Pc::Pc(Vetor3D t, Vetor3D r, Vetor3D e) : Objeto(t, r, e) {
+    pc = new Model3DS("../3ds/pc.3DS");
+}
+
 Pc::~Pc() {
     delete pc;
 }
