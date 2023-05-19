@@ -10,6 +10,8 @@ using namespace std;
 #include <gui.h>
 #include <objeto.h>
 
+#include <shape.h>
+
 #include <cubo.h>
 #include <sofa.h>
 #include <televisao.h>
@@ -147,142 +149,9 @@ void cenario() {
 
     objetos.push_back(new Parede( Vetor3D(3, 0, 0), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
     objetos.push_back(new Teto( Vetor3D(3, 2, 0), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
-
-      // cama
-//    glPushMatrix();
-//        glTranslatef(1, 0, 5.3);
-//        glRotatef(-90, 0, 1, 0);
-//        objetos[0]->desenha();
-//    glPopMatrix();
-//    // mesa pc
-//    glPushMatrix();
-//        glTranslatef(1, 0, 2.3);
-//        objetos[1]->desenha();
-//    glPopMatrix();
-//    // pc
-//    glPushMatrix();
-//        glTranslatef(0.2, 1.1, 2.3);
-//        objetos[2]->desenha();
-//    glPopMatrix();
-//    // documentos
-//    glPushMatrix();
-//        glTranslatef(1.7, 1.1, 2.3);
-//        objetos[3]->desenha();
-//    glPopMatrix();
-//    // cadeira
-//    glPushMatrix();
-//        glTranslatef(1, 0, 2.7);
-//        glRotatef(180, 0, 1, 0);
-//        objetos[4]->desenha();
-//    glPopMatrix();
-//    // guarda roupa
-//    glPushMatrix();
-//        glTranslatef(4, 0, 4);
-//        glRotatef(-90, 0, 1, 0);
-//        objetos[5]->desenha();
-//    glPopMatrix();
-
-//    // sofa 1
-//    glPushMatrix();
-//        glTranslatef(3, 0, -1);
-//        glRotatef(-90, 0, 1, 0);
-//        objetos[6]->desenha();
-//    glPopMatrix();
-//    // sofa 2
-//    glPushMatrix();
-//        glTranslatef(1, 0, 0.5);
-//        glRotatef(180, 0, 1, 0);
-//        objetos[7]->desenha();
-//    glPopMatrix();
-//    // televisao
-//    glPushMatrix();
-//        glTranslatef(1, 0, -3);
-//        objetos[8]->desenha();
-//    glPopMatrix();
-
-//    // chuveiro
-//    glPushMatrix();
-//        glTranslatef(6, 0, 6.5);
-//        glRotatef(180, 0, 1, 0);
-//        objetos[9]->desenha();
-//    glPopMatrix();
-//    // pia
-//    glPushMatrix();
-//        glTranslatef(7.1, 1, 3);
-//        glRotatef(180, 0, 1, 0);
-//        objetos[10]->desenha();
-//    glPopMatrix();
-//    // vaso sanitario
-//    glPushMatrix();
-//        glTranslatef(5, 0, 3);
-//        glRotatef(90, 0, 1, 0);
-//        objetos[11]->desenha();
-//    glPopMatrix();
-
-//    // mesa
-//    glPushMatrix();
-//        glTranslatef(5.5, 0, -2);
-//        objetos[12]->desenha();
-//    glPopMatrix();
-//    // cadeira 1
-//    glPushMatrix();
-//        glTranslatef(5.5, 0, -3);
-//        objetos[13]->desenha();
-//    glPopMatrix();
-//    // cadeira 2
-//    glPushMatrix();
-//        glTranslatef(5.5, 0, -1);
-//        glRotatef(180, 0, 1, 0);
-//        objetos[14]->desenha();
-//    glPopMatrix();
-
-//    // geladeira
-//    glPushMatrix();
-//        glTranslatef(0, 0, -5.8);
-//        objetos[15]->desenha();
-//    glPopMatrix();
-//    // fogao
-//    glPushMatrix();
-//        glTranslatef(2, 0, -5.5);
-//        objetos[16]->desenha();
-//    glPopMatrix();
-//    // armario
-//    glPushMatrix();
-//        glTranslatef(5, 0, -6);
-//        glScalef(0.94, 0.5, 1);
-//        objetos[17]->desenha();
-//    glPopMatrix();
-//    // microondas
-//    glPushMatrix();
-//        glTranslatef(5, 1.3, -6);
-//        objetos[18]->desenha();
-//    glPopMatrix();
-
-//    // piscina
-//    glPushMatrix();
-//        glTranslatef(-4.7, 0.01, 2);
-//        glRotatef(90, 0, 1, 0);
-//        glScalef(1.5, 1.5, 1.5);
-//        objetos[19]->desenha();
-//    glPopMatrix();
-//    // escorregador
-//    glPushMatrix();
-//        glTranslatef(-6, 0, -5);
-//        glRotatef(45, 0, 1, 0);
-//        objetos[20]->desenha();
-//    glPopMatrix();
-
-//    // parede
-//    glPushMatrix();
-//        glTranslatef(3, 0, 0);
-//        objetos[21]->desenha();
-//    glPopMatrix();
-//    // teto
-//    glPushMatrix();
-//        glTranslatef(3, 2, 0);
-//        objetos[22]->desenha();
-//    glPopMatrix();
 }
+
+Shape a = Shape();
 
 void desenha() {
     GUI::displayInit();
@@ -306,6 +175,8 @@ void desenha() {
         glutGUI::cam->rotatey(0, 1);
     }
 
+//    a.desenha();
+
     t.x += glutGUI::dtx;
     t.y += glutGUI::dty;
     t.z += glutGUI::dtz;
@@ -325,6 +196,9 @@ void teclado(unsigned char tecla, int mx, int my) {
     switch (tecla) {
     case 27:
         exit(0);
+        break;
+    case 'z':
+        if (desenha_objetos) { objetos.push_back(new Cubo()); }
         break;
     case 't':
         glutGUI::trans_obj = !glutGUI::trans_obj;
