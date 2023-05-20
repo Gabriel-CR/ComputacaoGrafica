@@ -1,11 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <sstream>
-#include <fstream>
 
 using namespace std;
-
-#include <controller.h>
 
 #include <gui.h>
 #include <objeto.h>
@@ -73,6 +69,7 @@ void selecionar_proximo() {
 
 void selecionar_anterior() {
     if (selecionar) {
+        if (s == -1) { s = 0; }
         objetos[s]->selecionado = false;
         (s == 0) ? s = objetos.size() - 1 : s -= 1;
         objetos[s]->selecionado = true;
@@ -151,8 +148,6 @@ void cenario() {
     objetos.push_back(new Teto( Vetor3D(3, 2, 0), Vetor3D(0, 0, 0), Vetor3D(0, 0, 0) ));
 }
 
-Shape a = Shape();
-
 void desenha() {
     GUI::displayInit();
     GUI::setLight(0, -5,5,3, true, false);
@@ -174,8 +169,6 @@ void desenha() {
     if (cam_id == 2) {
         glutGUI::cam->rotatey(0, 1);
     }
-
-//    a.desenha();
 
     t.x += glutGUI::dtx;
     t.y += glutGUI::dty;
