@@ -304,5 +304,5 @@ void teclado(unsigned char tecla, int mx, int my) {
 int main() {
     cout << "Hello World!" << endl;
 
-    GUI gui = GUI(800,600,desenha,teclado);
+    GUI gui = GUI(800, 600, desenha, teclado);
 }
